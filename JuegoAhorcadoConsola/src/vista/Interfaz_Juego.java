@@ -39,6 +39,7 @@ public class Interfaz_Juego extends javax.swing.JFrame {
         palabraJugador4 = new javax.swing.JTextField();
         letraJugador4 = new javax.swing.JTextField();
         adivinarJugador4 = new javax.swing.JButton();
+        jLabelIntentos = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         imagenJugador4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -89,6 +90,9 @@ public class Interfaz_Juego extends javax.swing.JFrame {
         adivinarJugador4.setText("adivinar");
         adivinarJugador4.setEnabled(false);
         getContentPane().add(adivinarJugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 540, -1, -1));
+
+        jLabelIntentos.setText("intentos:");
+        getContentPane().add(jLabelIntentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, -1, -1));
 
         jLabel8.setText("Letra");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 480, -1, -1));
@@ -171,6 +175,7 @@ public class Interfaz_Juego extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
+    public javax.swing.JLabel jLabelIntentos;
     public javax.swing.JLabel jLabelRegresar;
     public javax.swing.JTextField letraJugador1;
     public javax.swing.JTextField letraJugador2;
