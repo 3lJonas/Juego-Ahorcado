@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package juegoahorcadoconsola;
+package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +11,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import juegoAhorcado.Jugador;
 import vista.Interfaz_Juego;
 import vista.Interfaz_Menu;
 import vista.Interfaz_Multijugador;
@@ -34,7 +35,7 @@ public class ControladorMenu implements ActionListener, MouseListener {
         this.pesMultiJugador = new Interfaz_Multijugador();
 
         this.intJuego = new Interfaz_Juego();
-        this.contrJuego = new ControladorJuego(intJuego, pesMultiJugador,this.jugadores);
+        
         this.intMenu.jButtonJugar.addActionListener(this);
         this.pesMultiJugador.jLabelRegresar.addMouseListener(this);
         this.pesMultiJugador.jButtonAñadir.addActionListener(this);
@@ -64,11 +65,13 @@ public class ControladorMenu implements ActionListener, MouseListener {
         if (this.pesMultiJugador.jButtonIniciar==e.getSource()) {
             if (this.verificarListo()) {
 
-            if (this.pesMultiJugador.jButtonIniciar == e.getSource()) {
+            this.contrJuego = new ControladorJuego(intJuego, pesMultiJugador,this.jugadores);
                 this.pesMultiJugador.setVisible(false);
                 this.contrJuego.getInterfaz().setLocationRelativeTo(null);
+                this.contrJuego.iniciarJuego();
                 this.contrJuego.getInterfaz().setVisible(true);
-            }
+                
+            
         }else{
             JOptionPane.showMessageDialog(null, "Todos los jugadores deben estar listos!!!");
         }

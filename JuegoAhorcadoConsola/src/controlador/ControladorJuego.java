@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package juegoahorcadoconsola;
+package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +10,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import juegoAhorcado.Jugador;
+import modelo.Torneo;
 import vista.Interfaz_Juego;
 import vista.Interfaz_Multijugador;
 
@@ -19,6 +21,7 @@ import vista.Interfaz_Multijugador;
  */
 public class ControladorJuego implements ActionListener, MouseListener {
 
+    private ArrayList<Jugador> jugadores;
     private Interfaz_Multijugador interfazAnterior;
     private Interfaz_Juego interfaz;
     private Torneo torneo;
@@ -30,33 +33,24 @@ public class ControladorJuego implements ActionListener, MouseListener {
         this.interfaz.palabraJugador1.addActionListener(this);
         this.interfaz.letraJugador1.addActionListener(this);
         this.interfaz.adivinarJugador1.addActionListener(this);
-        this.interfaz.palabraJugador2.addActionListener(this);
-        this.interfaz.letraJugador2.addActionListener(this);
-        this.interfaz.adivinarJugador2.addActionListener(this);
-        this.interfaz.palabraJugador3.addActionListener(this);
-        this.interfaz.letraJugador3.addActionListener(this);
-        this.interfaz.adivinarJugador3.addActionListener(this);
-        this.interfaz.palabraJugador4.addActionListener(this);
-        this.interfaz.letraJugador4.addActionListener(this);
-        this.interfaz.adivinarJugador4.addActionListener(this);
-      //  this.torneo = new Torneo(interfaz, jugadores, this.interfazAnterior.jSpinnerRondas.getComponentCount());
-        //Aqui iniciar el torneo
+        this.jugadores = jugadores;
+
+        this.torneo = new Torneo(jugadores,Integer.parseInt(interfazAnterior.jSpinnerRondas.getValue().toString()), interfaz, interfazAnterior);
+        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (this.interfaz.adivinarJugador1 == e.getSource()) {
-            System.out.println("adivino el jugador1");
+            System.out.println("aplasto el jugador");
+            this.torneo.jugarRonda();
         }
-        if (this.interfaz.adivinarJugador2 == e.getSource()) {
-            System.out.println("adivino el jugador1");
-        }
-        if (this.interfaz.adivinarJugador3 == e.getSource()) {
-            System.out.println("adivino el jugador1");
-        }
-        if (this.interfaz.adivinarJugador4 == e.getSource()) {
-            System.out.println("adivino el jugador1");
-        }
+
+    }
+
+    public void iniciarJuego() {
+        System.out.println("Jugadores: " + torneo.getJugadores());
+        this.torneo.iniciarTorneo();
     }
 
     public Interfaz_Juego getInterfaz() {
@@ -71,6 +65,7 @@ public class ControladorJuego implements ActionListener, MouseListener {
         if (regresar == 0) {
             this.interfazAnterior.setVisible(true);
             this.interfaz.dispose();
+            this.jugadores.clear();
 
         }
     }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package juegoahorcadoconsola;
+package juegoAhorcado;
 
 /**
  *
@@ -14,12 +14,15 @@ public class Jugador {
     private int intentos;
     private int puntaje;
     private String imagen;
+    private Palabra palabra;
 
     public Jugador(String nombre) {
+        
         this.nombre = nombre;
         this.puntaje = 0;
         this.intentos=6;
         this.imagen="/Imagenes/Recurso 1.png";
+        this.palabra=new Palabra("");
     }
 
     public String getNombre() {
@@ -30,9 +33,6 @@ public class Jugador {
         return intentos;
     }
 
-    public void setIntentos(int intentos) {
-        this.intentos = intentos;
-    }
 
     public String getImagen() {
         return this.imagen;
@@ -44,10 +44,23 @@ public class Jugador {
 
     
     public int getPuntaje() {
-        return puntaje;
+        return this.puntaje;
     }
 
     public void sumarPuntaje(int puntos) {
         puntaje += puntos;
     }
+
+    public Palabra getPalabra() {
+        return this.palabra;
+    }
+
+    public void setPalabra(Palabra palabra) {
+        this.palabra = palabra;
+    }
+
+    public void decrementarVidas() {
+        this.intentos--;
+    }
+    
 }

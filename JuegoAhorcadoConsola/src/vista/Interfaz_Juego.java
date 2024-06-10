@@ -27,25 +27,12 @@ public class Interfaz_Juego extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
+        jLabelJugador = new javax.swing.JLabel();
+        jLabelPuntuacion = new javax.swing.JLabel();
         palabraJugador1 = new javax.swing.JTextField();
         letraJugador1 = new javax.swing.JTextField();
         adivinarJugador1 = new javax.swing.JButton();
-        palabraJugador2 = new javax.swing.JTextField();
-        letraJugador2 = new javax.swing.JTextField();
-        adivinarJugador2 = new javax.swing.JButton();
-        palabraJugador3 = new javax.swing.JTextField();
-        letraJugador3 = new javax.swing.JTextField();
-        adivinarJugador3 = new javax.swing.JButton();
-        palabraJugador4 = new javax.swing.JTextField();
-        letraJugador4 = new javax.swing.JTextField();
-        adivinarJugador4 = new javax.swing.JButton();
         jLabelIntentos = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        imagenJugador4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        imagenJugador3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        imagenJugador2 = new javax.swing.JLabel();
         jLabelRegresar = new javax.swing.JLabel();
         imagenJugador1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -54,70 +41,30 @@ public class Interfaz_Juego extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setText("Letra");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 480, -1, -1));
-        getContentPane().add(palabraJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 180, -1));
-        getContentPane().add(letraJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 510, 50, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 450, -1, -1));
+
+        jLabelJugador.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabelJugador.setText("jLabel2");
+        getContentPane().add(jLabelJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 120, 160, 50));
+
+        jLabelPuntuacion.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabelPuntuacion.setText("jLabel2");
+        getContentPane().add(jLabelPuntuacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 160, 50));
+        getContentPane().add(palabraJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, 350, -1));
+        getContentPane().add(letraJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 480, 50, -1));
 
         adivinarJugador1.setText("adivinar");
-        getContentPane().add(adivinarJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 540, -1, -1));
-
-        palabraJugador2.setEnabled(false);
-        getContentPane().add(palabraJugador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 420, 180, -1));
-
-        letraJugador2.setEnabled(false);
-        getContentPane().add(letraJugador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 510, 50, -1));
-
-        adivinarJugador2.setText("adivinar");
-        adivinarJugador2.setEnabled(false);
-        getContentPane().add(adivinarJugador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 540, -1, -1));
-
-        palabraJugador3.setEnabled(false);
-        getContentPane().add(palabraJugador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 420, 180, -1));
-
-        letraJugador3.setEnabled(false);
-        getContentPane().add(letraJugador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 510, 50, -1));
-
-        adivinarJugador3.setText("adivinar");
-        adivinarJugador3.setEnabled(false);
-        getContentPane().add(adivinarJugador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 540, -1, -1));
-
-        palabraJugador4.setEnabled(false);
-        getContentPane().add(palabraJugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 420, 180, -1));
-
-        letraJugador4.setEnabled(false);
-        getContentPane().add(letraJugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 510, 50, -1));
-
-        adivinarJugador4.setText("adivinar");
-        adivinarJugador4.setEnabled(false);
-        getContentPane().add(adivinarJugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 540, -1, -1));
+        getContentPane().add(adivinarJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 510, -1, -1));
 
         jLabelIntentos.setText("intentos:");
-        getContentPane().add(jLabelIntentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, -1, -1));
-
-        jLabel8.setText("Letra");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 480, -1, -1));
-
-        imagenJugador4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Recurso 1.png"))); // NOI18N
-        getContentPane().add(imagenJugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 210, -1, -1));
-
-        jLabel6.setText("Letra");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 480, -1, -1));
-
-        imagenJugador3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Recurso 1.png"))); // NOI18N
-        getContentPane().add(imagenJugador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 210, -1, -1));
-
-        jLabel4.setText("Letra");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 480, -1, -1));
-
-        imagenJugador2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Recurso 1.png"))); // NOI18N
-        getContentPane().add(imagenJugador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, -1, -1));
+        getContentPane().add(jLabelIntentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, -1, -1));
 
         jLabelRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/flecha_regresar.png"))); // NOI18N
         jLabelRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(jLabelRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 50, 140, 90));
 
         imagenJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Recurso 1.png"))); // NOI18N
-        getContentPane().add(imagenJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, -1, -1));
+        getContentPane().add(imagenJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo-blanco-bordes-naranja-1 (2).jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 730));
@@ -163,27 +110,14 @@ public class Interfaz_Juego extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton adivinarJugador1;
-    public javax.swing.JButton adivinarJugador2;
-    public javax.swing.JButton adivinarJugador3;
-    public javax.swing.JButton adivinarJugador4;
     public javax.swing.JLabel imagenJugador1;
-    public javax.swing.JLabel imagenJugador2;
-    public javax.swing.JLabel imagenJugador3;
-    public javax.swing.JLabel imagenJugador4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
     public javax.swing.JLabel jLabelIntentos;
+    public javax.swing.JLabel jLabelJugador;
+    public javax.swing.JLabel jLabelPuntuacion;
     public javax.swing.JLabel jLabelRegresar;
     public javax.swing.JTextField letraJugador1;
-    public javax.swing.JTextField letraJugador2;
-    public javax.swing.JTextField letraJugador3;
-    public javax.swing.JTextField letraJugador4;
     public javax.swing.JTextField palabraJugador1;
-    public javax.swing.JTextField palabraJugador2;
-    public javax.swing.JTextField palabraJugador3;
-    public javax.swing.JTextField palabraJugador4;
     // End of variables declaration//GEN-END:variables
 }
