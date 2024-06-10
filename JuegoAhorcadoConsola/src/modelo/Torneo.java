@@ -6,7 +6,6 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -14,7 +13,6 @@ import javax.swing.JOptionPane;
 import juegoAhorcado.Jugador;
 import juegoAhorcado.Palabra;
 import vista.Interfaz_Juego;
-import vista.Interfaz_Menu;
 import vista.Interfaz_Multijugador;
 
 /**
@@ -23,6 +21,7 @@ import vista.Interfaz_Multijugador;
  */
 public class Torneo {
 
+    private int count = 0;
     private int jugadorActual;
     private Jugador jugador;
     private Palabra palabra;
@@ -40,13 +39,14 @@ public class Torneo {
         this.jugadores = jugadores;
         this.palabras = new ArrayList<>();
         this.rondas = rondas;
-        this.jugadores = new ArrayList<>();
         this.palabrasUsadas = new ArrayList<>();
         this.intJuego = intJuego;
         this.intMultijugador = intMultijugador;
         this.letrasUsadas = new HashSet<>();
         this.jugador = jugadores.get(0);
         this.palabraOculta = new StringBuilder();
+        cargarPalabras();
+        this.prepararPalabra();
     }
 
     private void cargarPalabras() {
@@ -76,14 +76,20 @@ public class Torneo {
     }
 
     private void siguiente() {
+        if (this.rondas != this.count) {
+            if (jugadorActual != (jugadores.size() - 1)) {
+                this.jugadorActual++;
+                this.letrasUsadas.clear();
+                this.jugador = jugadores.get(jugadorActual);
 
-        if (jugadorActual != (jugadores.size() - 1)) {
-            this.jugador = jugadores.get(jugadorActual);
-            this.jugadorActual++;
+            } else {
+                this.jugadorActual = 0;
+                this.jugador = jugadores.get(jugadorActual);
+
+            }
+            this.count++;
         } else {
-            this.jugadorActual = 0;
-            jugador = jugadores.get(jugadorActual);
-
+            System.out.println("SE ACABO TODO AQUIPONER LA INTERFAZ DE LOS RESULTADOS");
         }
 
     }
@@ -96,33 +102,48 @@ public class Torneo {
     }
 
     public void jugarRonda() {
-
-        if (!palabra.estaCompleta() && this.jugador.getIntentos() > 0) {
+        if (this.jugador.getIntentos() > 0) {
             if (this.intJuego.letraJugador1.getText().length() == 1) {
                 char letra = this.intJuego.letraJugador1.getText().toUpperCase().charAt(0);
-                if (!palabra.adivinarLetra(letra)) {
-                    jugador.decrementarVidas();
-                    System.out.println("Letra incorrecta. Vidas restantes: " + jugador.getIntentos());
-
+                if (letrasUsadas.contains(letra)) {
+                    // Notificar al jugador que la letra ya fue utilizada
+                    System.out.println("La letra '" + letra + "' ya ha sido usada. Por favor, elige otra letra.");
                 } else {
-                    System.out.println("Si : "+this.palabra.mostrarPalabra());
-                    this.jugador.setPalabra(new Palabra(this.palabra.mostrarPalabra()));
-                    this.actualizarInterfaz(this.jugador);
+                    letrasUsadas.add(letra); // Agregar la letra al conjunto de letras usadas
+                    if (!palabra.adivinarLetra(letra)) {
+                        jugador.decrementarVidas();
+                        if (this.jugador.getIntentos() == 0) {
+                            System.out.println("Se termino su juego");
+                            this.siguiente();
+                            this.prepararPalabra();
+                            this.actualizarInterfaz(this.jugador);
+                        }
+                        System.out.println("Letra incorrecta. Vidas restantes: " + jugador.getIntentos());
+                        System.out.println("Jugadores: " + jugadores.toString());
+                        this.cambiarImagen();
+                        this.actualizarInterfaz(this.jugador);
+                    } else {
+                        this.jugador.setPalabra(new Palabra(this.palabra.mostrarPalabra()));
+                        this.actualizarInterfaz(this.jugador);
+                    }
                 }
             } else {
                 System.out.println("Ingrese solo un caracter");
             }
-
         } else {
             System.out.println("Se termino su juego");
             this.siguiente();
+            this.prepararPalabra();
             this.actualizarInterfaz(this.jugador);
         }
         if (palabra.estaCompleta()) {
             this.jugador.sumarPuntaje(120);
             System.out.println(this.jugador.getNombre() + " ha adivinado la palabra!");
+            this.siguiente();
+            this.prepararPalabra();
+            this.actualizarInterfaz(this.jugador);
         }
-
+        this.intJuego.letraJugador1.setText("");
     }
 
     public Palabra seleccionarPalabra() {
@@ -131,6 +152,32 @@ public class Torneo {
         palabras.remove(palabra);
         palabrasUsadas.add(palabra);
         return palabra;
+    }
+
+    private void cambiarImagen() {
+        switch (this.jugador.getIntentos()) {
+            case 5:
+                this.jugador.setImagen("/Imagenes/Recurso 4.png");
+                break;
+            case 4:
+                this.jugador.setImagen("/Imagenes/Recurso 5.png");
+                break;
+            case 3:
+                this.jugador.setImagen("/Imagenes/Recurso 6.png");
+                break;
+            case 2:
+                this.jugador.setImagen("/Imagenes/Recurso 7.png");
+                break;
+            case 1:
+                this.jugador.setImagen("/Imagenes/Recurso 8.png");
+                break;
+            case 0:
+                this.jugador.setImagen("/Imagenes/Recurso 9.png");
+                break;
+
+            default:
+                
+        }
     }
 
     //
@@ -172,11 +219,11 @@ public class Torneo {
     //
 
     private void actualizarInterfaz(Jugador jugador) {
-        this.prepararPalabra();
-        System.out.println(this.jugador.getPalabra().mostrarPalabra());
+
+        this.intJuego.jLabelRonda.setText("Ronda: " + (this.count + 1));
         this.intJuego.palabraJugador1.setText(this.palabra.mostrarPalabra());
         this.intJuego.imagenJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource(jugador.getImagen())));
-        this.intJuego.jLabelIntentos.setText("Intentos: " + jugador.getIntentos());
+        this.intJuego.jLabelPuntuacion.setText("Intentos: " + jugador.getIntentos());
         this.intJuego.jLabelJugador.setText("Turno de " + jugador.getNombre());
     }
 
