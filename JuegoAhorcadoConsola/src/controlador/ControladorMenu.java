@@ -11,6 +11,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 import juegoAhorcado.Jugador;
 import vista.Interfaz_Juego;
 import vista.Interfaz_Menu;
@@ -57,8 +58,10 @@ public class ControladorMenu implements ActionListener, MouseListener {
 
         }//Para el menu de jugar o ver puntaje
         if (this.intMenu.jButtonJugar == e.getSource()) {
+             SpinnerNumberModel model = new SpinnerNumberModel(1, 1, 7, 1);
             this.intMenu.setVisible(false);
             this.pesMultiJugador.setVisible(true);
+            this.pesMultiJugador.jSpinnerRondas.setModel(model);
             this.pesMultiJugador.setLocationRelativeTo(null);
         }
         //para iniciar la partida

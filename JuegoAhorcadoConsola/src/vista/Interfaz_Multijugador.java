@@ -62,6 +62,8 @@ public class Interfaz_Multijugador extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 500, -1, -1));
 
         jSpinnerRondas.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jSpinnerRondas.setToolTipText("");
+        jSpinnerRondas.setValue(1);
         getContentPane().add(jSpinnerRondas, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 500, 70, 30));
 
         jButtonIniciar.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N

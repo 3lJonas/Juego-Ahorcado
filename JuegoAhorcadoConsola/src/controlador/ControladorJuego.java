@@ -35,7 +35,7 @@ public class ControladorJuego implements ActionListener, MouseListener {
         this.interfaz.adivinarJugador1.addActionListener(this);
         this.jugadores = jugadores;
 
-        this.torneo = new Torneo(jugadores,Integer.parseInt(interfazAnterior.jSpinnerRondas.getValue().toString()), interfaz, interfazAnterior);
+        this.torneo = new Torneo(this.jugadores,Integer.parseInt(interfazAnterior.jSpinnerRondas.getValue().toString()), interfaz, interfazAnterior);
         
     }
 
@@ -49,8 +49,9 @@ public class ControladorJuego implements ActionListener, MouseListener {
     }
 
     public void iniciarJuego() {
-        System.out.println("Jugadores: " + torneo.getJugadores());
+        
         this.torneo.iniciarTorneo();
+        
     }
 
     public Interfaz_Juego getInterfaz() {
