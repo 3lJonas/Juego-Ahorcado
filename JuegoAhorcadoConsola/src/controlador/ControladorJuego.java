@@ -35,23 +35,19 @@ public class ControladorJuego implements ActionListener, MouseListener {
         this.interfaz.adivinarJugador1.addActionListener(this);
         this.jugadores = jugadores;
 
-        this.torneo = new Torneo(this.jugadores,Integer.parseInt(interfazAnterior.jSpinnerRondas.getValue().toString()), interfaz, interfazAnterior);
-        
+        this.torneo = new Torneo(this.jugadores, Integer.parseInt(interfazAnterior.jSpinnerRondas.getValue().toString()), interfaz, interfazAnterior);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (this.interfaz.adivinarJugador1 == e.getSource()) {
-            System.out.println("aplasto el jugador");
+            // Controla la acción del botón adivinar
             this.torneo.jugarRonda();
         }
-
     }
 
     public void iniciarJuego() {
-        
         this.torneo.iniciarTorneo();
-        
     }
 
     public Interfaz_Juego getInterfaz() {
@@ -60,15 +56,22 @@ public class ControladorJuego implements ActionListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        String[] salir = {"Si", "No"};
-        int regresar = JOptionPane.showOptionDialog(null, "Al regresar se cancela la partida y pierde el progreso\n ¿Quiere regresar?", "Regresar", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, salir, salir[0]);
+        String[] salir = {"Sí", "No"};
+        int regresar = JOptionPane.showOptionDialog(null, "Al regresar se cancela la partida y se pierde el progreso\n ¿Quiere regresar?", "Regresar", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, salir, salir[0]);
 
         if (regresar == 0) {
             this.interfazAnterior.setVisible(true);
             this.interfaz.dispose();
             this.jugadores.clear();
-
         }
+    }
+
+    public void dispose() {
+        // Eliminar listeners para prevenir duplicación de eventos
+        this.interfaz.jLabelRegresar.removeMouseListener(this);
+        this.interfaz.palabraJugador1.removeActionListener(this);
+        this.interfaz.letraJugador1.removeActionListener(this);
+        this.interfaz.adivinarJugador1.removeActionListener(this);
     }
 
     @Override
@@ -86,5 +89,4 @@ public class ControladorJuego implements ActionListener, MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
     }
-
 }
