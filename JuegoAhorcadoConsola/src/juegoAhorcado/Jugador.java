@@ -15,6 +15,7 @@ public class Jugador {
     private int puntaje;
     private String imagen;
     private Palabra palabra;
+    private boolean adivino;
 
     public Jugador(String nombre) {
         
@@ -23,6 +24,7 @@ public class Jugador {
         this.intentos=6;
         this.imagen="/Imagenes/Recurso 1.png";
         this.palabra=new Palabra("");
+        this.adivino=false;
     }
 
     public String getNombre() {
@@ -61,6 +63,14 @@ public class Jugador {
 
     public void decrementarVidas() {
         this.intentos--;
+    }
+
+    public boolean getAdivino() {
+        return this.adivino;
+    }
+
+    public void setAdivino(boolean adivino) {
+        this.adivino = adivino;
     }
     
 }
