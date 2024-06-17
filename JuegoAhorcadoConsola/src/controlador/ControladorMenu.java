@@ -34,9 +34,8 @@ public class ControladorMenu implements ActionListener, MouseListener {
     public ControladorMenu() {
         this.intMenu = new Interfaz_Menu();
         this.pesMultiJugador = new Interfaz_Multijugador();
-
         this.intJuego = new Interfaz_Juego();
-        
+
         this.intMenu.jButtonJugar.addActionListener(this);
         this.pesMultiJugador.jLabelRegresar.addMouseListener(this);
         this.pesMultiJugador.jButtonAñadir.addActionListener(this);
@@ -55,29 +54,32 @@ public class ControladorMenu implements ActionListener, MouseListener {
             if (this.jugador == 3) {
                 this.pesMultiJugador.jButtonAñadir.setEnabled(false);
             }
-
-        }//Para el menu de jugar o ver puntaje
+        }
+        // Para el menu de jugar o ver puntaje
         if (this.intMenu.jButtonJugar == e.getSource()) {
-             SpinnerNumberModel model = new SpinnerNumberModel(1, 1, 7, 1);
+            SpinnerNumberModel model = new SpinnerNumberModel(1, 1, 7, 1);
             this.intMenu.setVisible(false);
             this.pesMultiJugador.setVisible(true);
             this.pesMultiJugador.jSpinnerRondas.setModel(model);
             this.pesMultiJugador.setLocationRelativeTo(null);
         }
-        //para iniciar la partida
-        if (this.pesMultiJugador.jButtonIniciar==e.getSource()) {
+        // Para iniciar la partida
+        if (this.pesMultiJugador.jButtonIniciar == e.getSource()) {
             if (this.verificarListo()) {
-
-            this.contrJuego = new ControladorJuego(intJuego, pesMultiJugador,this.jugadores);
+                // Eliminar la instancia anterior de ControladorJuego si existe
+                if (this.contrJuego != null) {
+                    this.contrJuego.dispose();
+                }
+                // Crear una nueva instancia de ControladorJuego
+                this.contrJuego = new ControladorJuego(intJuego, pesMultiJugador, this.jugadores);
                 this.pesMultiJugador.setVisible(false);
                 this.contrJuego.getInterfaz().setLocationRelativeTo(null);
                 this.contrJuego.iniciarJuego();
                 this.contrJuego.getInterfaz().setVisible(true);
-                
-            
-        }else{
-            JOptionPane.showMessageDialog(null, "Todos los jugadores deben estar listos!!!");
-        }
+            } else {
+                JOptionPane.showMessageDialog(null, "Todos los jugadores deben tener nombres válidos y estar listos!!!");
+                this.jugadores.clear();
+            }
         }
         if (this.pesMultiJugador.jButtonListo1 == e.getSource()) {
             this.cambiarListo(this.pesMultiJugador.jButtonListo1);
@@ -91,10 +93,9 @@ public class ControladorMenu implements ActionListener, MouseListener {
         if (this.pesMultiJugador.jButtonListo4 == e.getSource()) {
             this.cambiarListo(this.pesMultiJugador.jButtonListo4);
         }
-        //añadir jugadores maximo 4
+        // Añadir jugadores máximo 4
         if (this.pesMultiJugador.jButtonAñadir == e.getSource()) {
             if (this.jugador < 4) {
-
                 this.jugador++;
                 if (this.jugador == 2) {
                     this.pesMultiJugador.jButtonListo2.setEnabled(true);
@@ -107,48 +108,39 @@ public class ControladorMenu implements ActionListener, MouseListener {
                 if (this.jugador == 4) {
                     this.pesMultiJugador.jButtonListo4.setEnabled(true);
                     this.pesMultiJugador.jTextFieldNombreJugador4.setEnabled(true);
-
                 }
             }
         }
-        //Quitar jugadores
+        // Quitar jugadores
         if (this.pesMultiJugador.jButtonQuitar == e.getSource()) {
             if (this.jugador > 1) {
-
                 if (this.jugador == 2) {
                     this.pesMultiJugador.jButtonListo2.setEnabled(false);
                     this.pesMultiJugador.jButtonListo2.setText("No listo");
                     this.pesMultiJugador.jTextFieldNombreJugador2.setText("");
                     this.pesMultiJugador.jTextFieldNombreJugador2.setEnabled(false);
-
                 }
                 if (this.jugador == 3) {
                     this.pesMultiJugador.jButtonListo3.setEnabled(false);
                     this.pesMultiJugador.jButtonListo3.setText("No listo");
                     this.pesMultiJugador.jTextFieldNombreJugador3.setText("");
                     this.pesMultiJugador.jTextFieldNombreJugador3.setEnabled(false);
-
                 }
                 if (this.jugador == 4) {
                     this.pesMultiJugador.jButtonListo4.setEnabled(false);
                     this.pesMultiJugador.jButtonListo4.setText("No listo");
                     this.pesMultiJugador.jTextFieldNombreJugador4.setText("");
                     this.pesMultiJugador.jTextFieldNombreJugador4.setEnabled(false);
-
                 }
                 this.jugador--;
             }
-
         }
         if (this.jugador != 4) {
-
             this.pesMultiJugador.jButtonAñadir.setEnabled(true);
             if (this.jugador == 1) {
                 this.pesMultiJugador.jButtonQuitar.setEnabled(false);
-
             }
         }
-        
     }
 
     public void cambiarListo(JButton boton) {
@@ -157,51 +149,62 @@ public class ControladorMenu implements ActionListener, MouseListener {
         } else {
             boton.setText("No listo");
         }
-
     }
 
     public boolean verificarListo() {
-
-        if (this.jugador == 1) {   
+        this.jugadores.clear();
+        this.verificar = true;
+        if (this.jugador >= 1) {
             this.jugadores.add(new Jugador(this.pesMultiJugador.jTextFieldNombreJugador1.getText()));
-            this.verificar = this.pesMultiJugador.jButtonListo1.getText().equals("Listo");
+            this.verificar &= this.pesMultiJugador.jButtonListo1.getText().equals("Listo") && (!this.pesMultiJugador.jTextFieldNombreJugador1.getText().equals(""));
         }
-        if (this.jugador == 2) {
-            this.jugadores.add(new Jugador(this.pesMultiJugador.jTextFieldNombreJugador1.getText()));
+        if (this.jugador >= 2) {
             this.jugadores.add(new Jugador(this.pesMultiJugador.jTextFieldNombreJugador2.getText()));
-            this.verificar = this.pesMultiJugador.jButtonListo1.getText().equals("Listo") && this.pesMultiJugador.jButtonListo2.getText().equals("Listo");
+            this.verificar &= this.pesMultiJugador.jButtonListo2.getText().equals("Listo") && (!this.pesMultiJugador.jTextFieldNombreJugador2.getText().equals(""));
         }
-        if (this.jugador == 3) {
-            this.jugadores.add(new Jugador(this.pesMultiJugador.jTextFieldNombreJugador1.getText()));
-            this.jugadores.add(new Jugador(this.pesMultiJugador.jTextFieldNombreJugador2.getText()));
+        if (this.jugador >= 3) {
             this.jugadores.add(new Jugador(this.pesMultiJugador.jTextFieldNombreJugador3.getText()));
-            this.verificar = this.pesMultiJugador.jButtonListo1.getText().equals("Listo") && this.pesMultiJugador.jButtonListo2.getText().equals("Listo") && this.pesMultiJugador.jButtonListo3.getText().equals("Listo");
+            this.verificar &= this.pesMultiJugador.jButtonListo3.getText().equals("Listo") && (!this.pesMultiJugador.jTextFieldNombreJugador3.getText().equals(""));
         }
         if (this.jugador == 4) {
-            this.jugadores.add(new Jugador(this.pesMultiJugador.jTextFieldNombreJugador1.getText()));
-            this.jugadores.add(new Jugador(this.pesMultiJugador.jTextFieldNombreJugador2.getText()));
-            this.jugadores.add(new Jugador(this.pesMultiJugador.jTextFieldNombreJugador3.getText()));
             this.jugadores.add(new Jugador(this.pesMultiJugador.jTextFieldNombreJugador4.getText()));
-            this.verificar = this.pesMultiJugador.jButtonListo1.getText().equals("Listo") && this.pesMultiJugador.jButtonListo2.getText().equals("Listo") && this.pesMultiJugador.jButtonListo3.getText().equals("Listo") && this.pesMultiJugador.jButtonListo4.getText().equals("Listo");
+            this.verificar &= this.pesMultiJugador.jButtonListo4.getText().equals("Listo") && (!this.pesMultiJugador.jTextFieldNombreJugador4.getText().equals(""));
         }
         return this.verificar;
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
         if (this.pesMultiJugador.jLabelRegresar == e.getSource()) {
             this.pesMultiJugador.setVisible(false);
             this.intMenu.setVisible(true);
-
+            this.resetMultiJugador();
         }
+    }
+
+    private void resetMultiJugador() {
+        this.jugador = 1;
+        this.pesMultiJugador.jButtonListo2.setEnabled(false);
+        this.pesMultiJugador.jTextFieldNombreJugador2.setEnabled(false);
+        this.pesMultiJugador.jButtonListo3.setEnabled(false);
+        this.pesMultiJugador.jTextFieldNombreJugador3.setEnabled(false);
+        this.pesMultiJugador.jButtonListo4.setEnabled(false);
+        this.pesMultiJugador.jTextFieldNombreJugador4.setEnabled(false);
+        this.pesMultiJugador.jButtonListo1.setText("No listo");
+        this.pesMultiJugador.jTextFieldNombreJugador1.setText("");
+        this.pesMultiJugador.jButtonListo2.setText("No listo");
+        this.pesMultiJugador.jTextFieldNombreJugador2.setText("");
+        this.pesMultiJugador.jButtonListo3.setText("No listo");
+        this.pesMultiJugador.jTextFieldNombreJugador3.setText("");
+        this.pesMultiJugador.jButtonListo4.setText("No listo");
+        this.pesMultiJugador.jTextFieldNombreJugador4.setText("");
+        this.pesMultiJugador.jButtonAñadir.setEnabled(true);
+        this.pesMultiJugador.jButtonQuitar.setEnabled(false);
     }
 
     public Interfaz_Menu getIntMenu() {
         return intMenu;
     }
-
-   
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -218,5 +221,4 @@ public class ControladorMenu implements ActionListener, MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
     }
-
 }
