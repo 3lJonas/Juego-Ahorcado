@@ -52,6 +52,9 @@ public class Jugador {
     public void sumarPuntaje(int puntos) {
         puntaje += puntos;
     }
+    public void restarPuntaje(int puntos) {
+        this.puntaje -= puntos;
+    }
 
     public Palabra getPalabra() {
         return this.palabra;
