@@ -10,6 +10,7 @@ package juegoAhorcado;
  * @author ASUS VIVOBOOK
  */
 public class Jugador {
+
     private String nombre;
     private int intentos;
     private int puntaje;
@@ -18,13 +19,13 @@ public class Jugador {
     private boolean adivino;
 
     public Jugador(String nombre) {
-        
+
         this.nombre = nombre;
         this.puntaje = 0;
-        this.intentos=6;
-        this.imagen="/Imagenes/Recurso 1.png";
-        this.palabra=new Palabra("");
-        this.adivino=false;
+        this.intentos = 6;
+        this.imagen = "/Imagenes/Recurso 1.png";
+        this.palabra = new Palabra("");
+        this.adivino = false;
     }
 
     public String getNombre() {
@@ -35,7 +36,6 @@ public class Jugador {
         return intentos;
     }
 
-
     public String getImagen() {
         return this.imagen;
     }
@@ -44,7 +44,6 @@ public class Jugador {
         this.imagen = imagen;
     }
 
-    
     public int getPuntaje() {
         return this.puntaje;
     }
@@ -52,6 +51,7 @@ public class Jugador {
     public void sumarPuntaje(int puntos) {
         puntaje += puntos;
     }
+
     public void restarPuntaje(int puntos) {
         this.puntaje -= puntos;
     }
@@ -75,5 +75,10 @@ public class Jugador {
     public void setAdivino(boolean adivino) {
         this.adivino = adivino;
     }
-    
+
+    public void resetearVidas() {
+        this.adivino = false;
+        this.intentos = 6;
+    }
+
 }

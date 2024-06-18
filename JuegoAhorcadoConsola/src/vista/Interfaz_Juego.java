@@ -26,10 +26,11 @@ public class Interfaz_Juego extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabelPuntuacion = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabelJugador = new javax.swing.JLabel();
         jLabelRonda = new javax.swing.JLabel();
-        jLabelPuntuacion = new javax.swing.JLabel();
+        jLabelIntentos = new javax.swing.JLabel();
         palabraJugador1 = new javax.swing.JTextField();
         letraJugador1 = new javax.swing.JTextField();
         adivinarJugador1 = new javax.swing.JButton();
@@ -39,6 +40,10 @@ public class Interfaz_Juego extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabelPuntuacion.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
+        jLabelPuntuacion.setText("jLabel2");
+        getContentPane().add(jLabelPuntuacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 240, -1, -1));
 
         jLabel3.setText("Letra");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 450, -1, -1));
@@ -51,9 +56,9 @@ public class Interfaz_Juego extends javax.swing.JFrame {
         jLabelRonda.setText("jLabel2");
         getContentPane().add(jLabelRonda, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 160, 50));
 
-        jLabelPuntuacion.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jLabelPuntuacion.setText("jLabel2");
-        getContentPane().add(jLabelPuntuacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 160, 50));
+        jLabelIntentos.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabelIntentos.setText("jLabel2");
+        getContentPane().add(jLabelIntentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 160, 50));
 
         palabraJugador1.setEnabled(false);
         getContentPane().add(palabraJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, 350, -1));
@@ -116,6 +121,7 @@ public class Interfaz_Juego extends javax.swing.JFrame {
     public javax.swing.JLabel imagenJugador1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    public javax.swing.JLabel jLabelIntentos;
     public javax.swing.JLabel jLabelJugador;
     public javax.swing.JLabel jLabelPuntuacion;
     public javax.swing.JLabel jLabelRegresar;

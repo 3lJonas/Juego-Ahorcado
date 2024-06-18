@@ -100,32 +100,39 @@ public class Torneo {
 
     private void siguiente() {
 
-// Verificar si el jugador actual ha completado la palabra
+        // Verificar si el jugador actual ha completado la palabra y si se ha alcanzado la ronda final
         Jugador jugadorActual = jugadores.get(this.jugadorActual);
-        
-        if (jugadorActual.getAdivino()&&(this.ronda==this.totRondas)) {
+
+        if (jugadorActual.getAdivino() && this.ronda == this.totRondas) {
             jugadoresCompletados.add(jugadorActual);
             jugadores.remove(jugadorActual); // Mover jugador a la lista de completados
-            if (!this.jugadores.isEmpty()) {
-                System.out.println(Arrays.toString(jugadores.toArray()));
-            } else {
-                this.intJuego.dispose();
-                Interfaz_Resultados r = new Interfaz_Resultados();
-                      System.out.println(Arrays.toString(jugadores.toArray()));
-                 System.out.println(Arrays.toString(this.jugadoresCompletados.toArray()));
-           
-                r.setVisible(true);
+
+            // Ajustar el índice si el jugador actual fue removido
+            if (this.jugadorActual >= jugadores.size()) {
+
             }
 
+            // Si ya no quedan jugadores, finalizar el torneo
+            if (jugadores.isEmpty()) {
+                // Cerrar la interfaz del juego y abrir la de resultados
+                this.intJuego.dispose();
+                Interfaz_Resultados r = new Interfaz_Resultados();
+                System.out.println(Arrays.toString(this.jugadoresCompletados.toArray()));
+                r.setVisible(true);
+                return; // Terminar la función aquí ya que no hay más jugadores
+            }
         } else {
             if (jugadorActual.getAdivino()) {
-                this.jugadorActual++;
-                siguiente();
+                // Si el jugador ha adivinado, avanzar al siguiente jugador sin incrementar la ronda
+                this.jugadorActual = (this.jugadorActual ) % jugadores.size();
+
+            } else {
+                // Avanzar al siguiente jugador
+                this.jugadorActual = (this.jugadorActual + 1) % jugadores.size();
+
             }
-            this.jugadorActual = (this.jugadorActual + 1) % jugadores.size();
-            System.out.println(this.jugadorActual);
+            this.actualizarInterfaz();
         }
-        this.actualizarInterfaz();
 
     }
 
@@ -152,17 +159,22 @@ public class Torneo {
                         } else {
                             jugador.sumarPuntaje(10); // Puntos por letra correcta
                             actualizarPalabraOculta(palabra, palabraOculta, letra);
+
                         }
 
                         this.actualizarInterfaz();
-
                         if (!palabra.estaCompleta()) {
                             delayTimer.restart(); // Iniciar el timer para esperar antes de pasar al siguiente jugador
                         } else {
                             jugador.setAdivino(true);
                             jugador.sumarPuntaje(50); // Bonificación por completar la palabra
                             jugador.sumarPuntaje(jugador.getIntentos() * 10); // Puntos por intentos restantes
+                            // Si el jugador ha adivinado, avanzar al siguiente jugador sin incrementar la ronda
+                            delayTimer.restart(); // Iniciar el timer para esperar antes de pasar al siguiente jugador
+                            this.jugadorActual = (this.jugadorActual + 1) % jugadores.size();
+
                             siguiente(); // Si ha completado la palabra, pasar automáticamente al siguiente jugador
+
                         }
                     }
                 } else {
@@ -172,9 +184,39 @@ public class Torneo {
 
             if (jugador.getIntentos() == 0) {
                 JOptionPane.showMessageDialog(null, "Se terminó el juego para " + jugador.getNombre());
+                siguiente();
+                return; // Terminar la función aquí para evitar continuar después de cambiar de turno
             }
 
             this.intJuego.letraJugador1.setText("");
+
+            // Verificar si todos los jugadores han adivinado o agotado sus intentos
+            boolean todosTerminaron = true;
+            for (Jugador j : jugadores) {
+                if (!j.getAdivino() && j.getIntentos() > 0) {
+                    todosTerminaron = false;
+                    break;
+                }
+            }
+
+            if (todosTerminaron) {
+                this.ronda++;
+                if (this.ronda <= this.totRondas) {
+                    // Reiniciar los estados de los jugadores para la siguiente ronda, si es necesario
+                    for (Jugador j : jugadores) {
+                        j.resetearVidas();
+                        j.setAdivino(false);
+                    }
+                    this.prepararPalabrasJugadores();
+                    this.jugadorActual = 0; // Reiniciar al primer jugador
+                    this.actualizarInterfaz();
+                } else {
+                    // Fin del torneo, mostrar resultados
+                    this.intJuego.dispose();
+                    Interfaz_Resultados r = new Interfaz_Resultados();
+                    r.setVisible(true);
+                }
+            }
         }
     }
 
@@ -216,8 +258,9 @@ public class Torneo {
         this.intJuego.jLabelRonda.setText("Ronda: " + this.ronda + "/" + this.totRondas);
         this.intJuego.palabraJugador1.setText(palabrasOcultas.get(jugador).toString());
         this.intJuego.imagenJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource(jugador.getImagen())));
-        this.intJuego.jLabelPuntuacion.setText("Intentos: " + jugador.getIntentos());
+        this.intJuego.jLabelIntentos.setText("Intentos: " + jugador.getIntentos());
         this.intJuego.jLabelJugador.setText("Turno de " + jugador.getNombre());
+        this.intJuego.jLabelPuntuacion.setText("Puntuación: " + jugador.getPuntaje());
     }
 
     public ArrayList<Jugador> getJugadores() {
