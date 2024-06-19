@@ -34,32 +34,47 @@ public class Interfaz_Resultados extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/tercerlugar.png"))); // NOI18N
         jLabel4.setText("3°");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 300, 180, 50));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 300, 120, 80));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/segundolugar.png"))); // NOI18N
         jLabel3.setText("2°");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 180, 50));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 130, 70));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/primerlugar.png"))); // NOI18N
         jLabel2.setText("1°");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 180, 50));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 120, 90));
 
         jLabelRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/flecha_regresar.png"))); // NOI18N
-        jLabelRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(jLabelRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 80, 140, 90));
 
-        jButtonJugar.setText("Volver a jugar!");
-        getContentPane().add(jButtonJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 530, 150, 50));
+        jButtonJugar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/volver-a-publicar.png"))); // NOI18N
+        jButtonJugar.setBorderPainted(false);
+        jButtonJugar.setContentAreaFilled(false);
+        jButtonJugar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonJugarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 480, 150, 80));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo-blanco-bordes-naranja-1 (2).jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 730));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo1.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, 1100, 640));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJugarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonJugarActionPerformed
 
     /**
      * @param args the command line arguments

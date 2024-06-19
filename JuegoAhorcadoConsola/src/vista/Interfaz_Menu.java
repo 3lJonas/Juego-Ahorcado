@@ -4,6 +4,11 @@
  */
 package vista;
 
+import java.io.File;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
 /**
  *
  * @author ASUS GAMER
@@ -13,9 +18,21 @@ public class Interfaz_Menu extends javax.swing.JFrame {
     /**
      * Creates new form Interfaz_Login
      */
+    private MediaPlayer mediaPlayer;
     public Interfaz_Menu() {
+        JFXPanel fxPanel = new JFXPanel(); 
+        
         initComponents();
+        reproducirMusica();
     }
+
+    private void reproducirMusica() {
+        File auidiojuego = new File("C:/Users/ASUS VIVOBOOK/Downloads/juego.mp3");
+        Media media = new Media(auidiojuego.toURI().toString());
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,24 +45,72 @@ public class Interfaz_Menu extends javax.swing.JFrame {
 
         jButtonMejoresPuntuaciones = new javax.swing.JButton();
         jButtonJugar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        Saliricono = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButtonMejoresPuntuaciones.setText("Mejores Puntuaciones");
+        jButtonMejoresPuntuaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconpunt.png"))); // NOI18N
+        jButtonMejoresPuntuaciones.setBorderPainted(false);
+        jButtonMejoresPuntuaciones.setContentAreaFilled(false);
+        jButtonMejoresPuntuaciones.setOpaque(false);
         jButtonMejoresPuntuaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMejoresPuntuacionesActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonMejoresPuntuaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 420, 150, 50));
+        getContentPane().add(jButtonMejoresPuntuaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 280, 140, 130));
 
-        jButtonJugar.setText("Jugar!");
-        getContentPane().add(jButtonJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 340, 150, 50));
+        jButtonJugar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconjugar.png"))); // NOI18N
+        jButtonJugar.setBorder(null);
+        jButtonJugar.setBorderPainted(false);
+        jButtonJugar.setContentAreaFilled(false);
+        jButtonJugar.setOpaque(false);
+        jButtonJugar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonJugarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 140, 130, 100));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo-blanco-bordes-naranja-1 (2).jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 730));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ahorcado.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+
+        Saliricono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/saliricon.png"))); // NOI18N
+        Saliricono.setBorderPainted(false);
+        Saliricono.setContentAreaFilled(false);
+        Saliricono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaliriconoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Saliricono, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 450, 110, 80));
+
+        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 3, 48)); // NOI18N
+        jLabel4.setText("Salir");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 450, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Comic Sans MS", 3, 36)); // NOI18N
+        jLabel5.setText("Mejor Puntuacion");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Comic Sans MS", 3, 36)); // NOI18N
+        jLabel6.setText("Jugar");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 160, 130, 60));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo1.png"))); // NOI18N
+        jLabel1.setOpaque(true);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, 1100, 640));
+
+        jLabel3.setText("jLabel2");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -53,6 +118,16 @@ public class Interfaz_Menu extends javax.swing.JFrame {
     private void jButtonMejoresPuntuacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMejoresPuntuacionesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonMejoresPuntuacionesActionPerformed
+
+    private void jButtonJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJugarActionPerformed
+
+
+    }//GEN-LAST:event_jButtonJugarActionPerformed
+
+    private void SaliriconoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaliriconoActionPerformed
+
+                System.exit(0);
+    }//GEN-LAST:event_SaliriconoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -91,8 +166,14 @@ public class Interfaz_Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Saliricono;
     public javax.swing.JButton jButtonJugar;
     public javax.swing.JButton jButtonMejoresPuntuaciones;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }

@@ -35,42 +35,51 @@ public class Interfaz_Juego extends javax.swing.JFrame {
         adivinarJugador1 = new javax.swing.JButton();
         jLabelRegresar = new javax.swing.JLabel();
         imagenJugador1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 3, 24)); // NOI18N
         jLabel3.setText("Letra");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 450, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 440, -1, -1));
 
-        jLabelJugador.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabelJugador.setFont(new java.awt.Font("Comic Sans MS", 3, 48)); // NOI18N
         jLabelJugador.setText("jLabel2");
-        getContentPane().add(jLabelJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, 380, 50));
+        getContentPane().add(jLabelJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 380, 50));
 
-        jLabelRonda.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabelRonda.setFont(new java.awt.Font("Comic Sans MS", 3, 36)); // NOI18N
         jLabelRonda.setText("jLabel2");
         getContentPane().add(jLabelRonda, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 160, 50));
 
-        jLabelPuntuacion.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabelPuntuacion.setFont(new java.awt.Font("Comic Sans MS", 3, 36)); // NOI18N
         jLabelPuntuacion.setText("jLabel2");
-        getContentPane().add(jLabelPuntuacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 160, 50));
+        getContentPane().add(jLabelPuntuacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 320, 50));
 
         palabraJugador1.setEnabled(false);
         getContentPane().add(palabraJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, 350, -1));
-        getContentPane().add(letraJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 480, 50, -1));
+        getContentPane().add(letraJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 480, 70, 30));
 
-        adivinarJugador1.setText("adivinar");
-        getContentPane().add(adivinarJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 510, -1, -1));
+        adivinarJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/adivinar.png"))); // NOI18N
+        adivinarJugador1.setBorderPainted(false);
+        adivinarJugador1.setContentAreaFilled(false);
+        getContentPane().add(adivinarJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 510, -1, -1));
 
         jLabelRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/flecha_regresar.png"))); // NOI18N
-        jLabelRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(jLabelRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 50, 140, 90));
 
         imagenJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Recurso 1.png"))); // NOI18N
         getContentPane().add(imagenJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo-blanco-bordes-naranja-1 (2).jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 730));
+        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 3, 24)); // NOI18N
+        jLabel2.setText("Adivinar");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 580, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo1.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 640));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -115,6 +124,7 @@ public class Interfaz_Juego extends javax.swing.JFrame {
     public javax.swing.JButton adivinarJugador1;
     public javax.swing.JLabel imagenJugador1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     public javax.swing.JLabel jLabelJugador;
     public javax.swing.JLabel jLabelPuntuacion;

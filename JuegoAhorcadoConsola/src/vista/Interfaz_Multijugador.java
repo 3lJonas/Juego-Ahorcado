@@ -55,9 +55,10 @@ public class Interfaz_Multijugador extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 3, 24)); // NOI18N
         jLabel2.setText("Rondas:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 500, -1, -1));
 
@@ -67,28 +68,35 @@ public class Interfaz_Multijugador extends javax.swing.JFrame {
         getContentPane().add(jSpinnerRondas, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 500, 70, 30));
 
         jButtonIniciar.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jButtonIniciar.setText("Iniciar");
+        jButtonIniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iniciar.png"))); // NOI18N
+        jButtonIniciar.setBorderPainted(false);
+        jButtonIniciar.setContentAreaFilled(false);
         jButtonIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonIniciarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 480, 150, 50));
+        getContentPane().add(jButtonIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 480, 140, 130));
 
         jButtonAñadir.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        jButtonAñadir.setText("+");
-        getContentPane().add(jButtonAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 70, 60));
+        jButtonAñadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar.png"))); // NOI18N
+        jButtonAñadir.setBorderPainted(false);
+        jButtonAñadir.setContentAreaFilled(false);
+        getContentPane().add(jButtonAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 80, -1));
 
         jButtonQuitar.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        jButtonQuitar.setText("-");
+        jButtonQuitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/quitarjug.png"))); // NOI18N
+        jButtonQuitar.setBorderPainted(false);
+        jButtonQuitar.setContentAreaFilled(false);
         jButtonQuitar.setEnabled(false);
         jButtonQuitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonQuitarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonQuitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 70, 60));
+        getContentPane().add(jButtonQuitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 110, 80));
 
+        jPanelJugador3.setBackground(new java.awt.Color(153, 204, 255));
         jPanelJugador3.setEnabled(false);
         jPanelJugador3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -112,6 +120,7 @@ public class Interfaz_Multijugador extends javax.swing.JFrame {
 
         getContentPane().add(jPanelJugador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 190, 170, 270));
 
+        jPanelJugador1.setBackground(new java.awt.Color(153, 204, 255));
         jPanelJugador1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/foto de perfil generico.png"))); // NOI18N
@@ -132,6 +141,7 @@ public class Interfaz_Multijugador extends javax.swing.JFrame {
 
         getContentPane().add(jPanelJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 170, 270));
 
+        jPanelJugador4.setBackground(new java.awt.Color(153, 204, 255));
         jPanelJugador4.setEnabled(false);
         jPanelJugador4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -155,6 +165,7 @@ public class Interfaz_Multijugador extends javax.swing.JFrame {
 
         getContentPane().add(jPanelJugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 190, 170, 270));
 
+        jPanelJugador2.setBackground(new java.awt.Color(153, 204, 255));
         jPanelJugador2.setEnabled(false);
         jPanelJugador2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -179,11 +190,11 @@ public class Interfaz_Multijugador extends javax.swing.JFrame {
         getContentPane().add(jPanelJugador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, 170, 270));
 
         jLabelRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/flecha_regresar.png"))); // NOI18N
-        jLabelRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(jLabelRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 80, 140, 90));
+        jLabelRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(jLabelRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 60, 160, 110));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo-blanco-bordes-naranja-1 (2).jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 730));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo1.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 640));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
