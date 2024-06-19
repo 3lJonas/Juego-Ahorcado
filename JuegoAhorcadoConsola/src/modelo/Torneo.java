@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import juegoAhorcado.Jugador;
 import juegoAhorcado.Palabra;
+import juegoAhorcado.Resultados;
 import vista.Interfaz_Juego;
 import vista.Interfaz_Multijugador;
 import vista.Interfaz_Resultados;
@@ -28,9 +29,10 @@ import vista.Interfaz_Resultados;
  */
 public class Torneo {
 
+    private Interfaz_Resultados intResultados;
     private int jugadorActual;
     private ArrayList<Jugador> jugadores;
-    private ArrayList<Jugador> jugadoresCompletados;
+    private Resultados resultado;
     private ArrayList<Palabra> palabras;
     private int totRondas;
     private int ronda = 1;
@@ -41,10 +43,11 @@ public class Torneo {
     private Map<Jugador, Set<Character>> letrasUsadasJugador;
     private Timer delayTimer;
 
-    public Torneo(ArrayList<Jugador> jugadores, int totRondas, Interfaz_Juego intJuego, Interfaz_Multijugador intMultijugador) {
+    public Torneo(ArrayList<Jugador> jugadores, int totRondas, Interfaz_Juego intJuego, Interfaz_Multijugador intMultijugador,Interfaz_Resultados intResultados) {
         this.jugadorActual = 0;
         this.jugadores = jugadores;
-        this.jugadoresCompletados = new ArrayList<>();
+        this.intResultados = intResultados;
+        
         this.palabras = new ArrayList<>();
         this.totRondas = totRondas;
         this.intJuego = intJuego;
@@ -98,37 +101,34 @@ public class Torneo {
         this.actualizarInterfaz();
     }
 
-   private void siguiente() {
-    // Si no hay jugadores, no hacer nada
-    if (jugadores.isEmpty()) {
-        System.out.println("jug: " + Arrays.toString(this.jugadores.toArray()));
-        System.out.println("comp: " + Arrays.toString(this.jugadoresCompletados.toArray()));
-        return;
-    }
-
-    // Verificar si todos los jugadores han completado o agotado sus intentos
-    boolean todosCompletadosOAgotados = true;
-    for (Jugador jugador : jugadores) {
-        if (!jugador.getAdivino() && jugador.getIntentos() > 0) {
-            todosCompletadosOAgotados = false;
-            break;
+    private void siguiente() {
+        // Si no hay jugadores, no hacer nada
+        if (jugadores.isEmpty()) {
+            return;
         }
+
+        // Verificar si todos los jugadores han completado o agotado sus intentos
+        boolean todosCompletadosOAgotados = true;
+        for (Jugador jugador : jugadores) {
+            if (!jugador.getAdivino() && jugador.getIntentos() > 0) {
+                todosCompletadosOAgotados = false;
+                break;
+            }
+        }
+
+        // Si todos los jugadores han completado o agotado sus intentos, no hacer nada
+        if (todosCompletadosOAgotados) {
+
+            return;
+        }
+
+        do {
+            System.out.println("do while");
+            this.jugadorActual = (this.jugadorActual + 1) % jugadores.size();
+        } while (jugadores.get(this.jugadorActual).getAdivino() || jugadores.get(this.jugadorActual).getIntentos() == 0);
+
+        this.actualizarInterfaz();
     }
-
-    // Si todos los jugadores han completado o agotado sus intentos, no hacer nada
-    if (todosCompletadosOAgotados) {
-        
-        return;
-    }
-
-    do {
-        System.out.println("do while");
-        this.jugadorActual = (this.jugadorActual + 1) % jugadores.size();
-    } while (jugadores.get(this.jugadorActual).getAdivino() || jugadores.get(this.jugadorActual).getIntentos() == 0);
-
-    this.actualizarInterfaz();
-}
-
 
     public void jugarRonda() {
         if (this.ronda <= this.totRondas) {
@@ -162,10 +162,10 @@ public class Torneo {
                             jugador.sumarPuntaje(50); // Bonificación por completar la palabra
                             jugador.sumarPuntaje(jugador.getIntentos() * 10); // Puntos por intentos restantes
                             actualizarInterfaz();
-                           JOptionPane.showMessageDialog(null,"adivino");
+                            JOptionPane.showMessageDialog(null, "adivino");
                             delayTimer.restart();
                             siguiente(); // Si ha completado la palabra, pasar automáticamente al siguiente jugador
-                         
+
                         }
                     }
                 } else {
@@ -176,7 +176,7 @@ public class Torneo {
             if (jugador.getIntentos() == 0) {
                 JOptionPane.showMessageDialog(null, "Se terminó el juego para " + jugador.getNombre());
                 siguiente();
-               
+
             }
 
             this.intJuego.letraJugador1.setText("");
@@ -203,13 +203,41 @@ public class Torneo {
                     this.actualizarInterfaz();
                 } else {
                     // Fin del torneo, mostrar resultados
-                    this.intJuego.dispose();
-                    Interfaz_Resultados r = new Interfaz_Resultados();
-                    r.setVisible(true);
+                    cargarResultados();
                 }
             }
         }
     }
+
+   private void cargarResultados() {
+    this.resultado = new Resultados(this.jugadores);
+    this.intJuego.dispose();
+    this.resultado.ordenarDecreciente();
+    this.jugadores = this.resultado.getJugadores(); // aquí ya está ordenada la colección de jugadores
+
+    this.intResultados.setLocationRelativeTo(null);
+    
+    // Actualizar los JLabels con los nombres y puntuaciones de los jugadores
+    if (jugadores.size() > 0) {
+        this.intResultados.jLabelPrimerL.setText(jugadores.get(0).getNombre() + " - " + jugadores.get(0).getPuntaje() + " puntos");
+    } else {
+        this.intResultados.jLabelPrimerL.setText("1°: -");
+    }
+    
+    if (jugadores.size() > 1) {
+        this.intResultados.jLabelSegundoL.setText(jugadores.get(1).getNombre() + " - " + jugadores.get(1).getPuntaje() + " puntos");
+    } else {
+        this.intResultados.jLabelSegundoL.setText("2°: -");
+    }
+    
+    if (jugadores.size() > 2) {
+        this.intResultados.jLabelTercerL.setText(jugadores.get(2).getNombre() + " - " + jugadores.get(2).getPuntaje() + " puntos");
+    } else {
+        this.intResultados.jLabelTercerL.setText("3°: -");
+    }
+    
+    this.intResultados.setVisible(true);
+}
 
     private void actualizarPalabraOculta(Palabra palabra, StringBuilder palabraOculta, char letra) {
         for (int i = 0; i < palabra.mostrarPalabra().length(); i++) {

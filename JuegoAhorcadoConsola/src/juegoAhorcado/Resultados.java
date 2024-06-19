@@ -12,18 +12,19 @@ import java.util.Comparator;
  *
  * @author ASUS GAMER
  */
-    public class Resultados {
-        private ArrayList<Jugador> jugadores=new ArrayList<>();
+public class Resultados {
 
-        public ArrayList<Jugador> getJugadores() {
-            return this.jugadores;
-        }
+    private ArrayList<Jugador> jugadores;
 
-        public void addJugadores(Jugador jugador) {
-            this.jugadores.add(jugador);
-        }
-        
-         public void ordenarDecreciente() {
+    public Resultados(ArrayList<Jugador> jugadores) {
+        this.jugadores = jugadores;
+    }
+
+    public ArrayList<Jugador> getJugadores() {
+        return this.jugadores;
+    }
+
+    public void ordenarDecreciente() {
         Collections.sort(this.jugadores, new Comparator<Jugador>() {
             @Override
             public int compare(Jugador j1, Jugador j2) {
@@ -31,4 +32,4 @@ import java.util.Comparator;
             }
         });
     }
-    }
+}

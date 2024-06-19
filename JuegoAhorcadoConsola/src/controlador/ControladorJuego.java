@@ -14,6 +14,7 @@ import juegoAhorcado.Jugador;
 import modelo.Torneo;
 import vista.Interfaz_Juego;
 import vista.Interfaz_Multijugador;
+import vista.Interfaz_Resultados;
 
 /**
  *
@@ -24,18 +25,21 @@ public class ControladorJuego implements ActionListener, MouseListener {
     private ArrayList<Jugador> jugadores;
     private Interfaz_Multijugador interfazAnterior;
     private Interfaz_Juego interfaz;
+    private Interfaz_Resultados intResultados;
     private Torneo torneo;
 
     public ControladorJuego(Interfaz_Juego interfaz, Interfaz_Multijugador interfazAnterior, ArrayList<Jugador> jugadores) {
+        this.intResultados = new Interfaz_Resultados();
         this.interfaz = interfaz;
         this.interfazAnterior = interfazAnterior;
+        this.intResultados.jButtonVolverAJugar.addActionListener(this);
         this.interfaz.jLabelRegresar.addMouseListener(this);
         this.interfaz.palabraJugador1.addActionListener(this);
         this.interfaz.letraJugador1.addActionListener(this);
         this.interfaz.adivinarJugador1.addActionListener(this);
         this.jugadores = jugadores;
 
-        this.torneo = new Torneo(this.jugadores, Integer.parseInt(interfazAnterior.jSpinnerRondas.getValue().toString()), interfaz, interfazAnterior);
+        this.torneo = new Torneo(this.jugadores, Integer.parseInt(interfazAnterior.jSpinnerRondas.getValue().toString()), interfaz, interfazAnterior,this.intResultados);
     }
 
     @Override
@@ -43,6 +47,10 @@ public class ControladorJuego implements ActionListener, MouseListener {
         if (this.interfaz.adivinarJugador1 == e.getSource()) {
             // Controla la acción del botón adivinar
             this.torneo.jugarRonda();
+        }
+        if (this.intResultados.jButtonVolverAJugar==e.getSource()) {
+            this.intResultados.dispose();
+            this.interfazAnterior.setVisible(true);
         }
     }
 

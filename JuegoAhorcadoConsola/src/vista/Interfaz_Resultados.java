@@ -26,34 +26,44 @@ public class Interfaz_Resultados extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabelPrimerL = new javax.swing.JLabel();
+        jLabelSegundoL = new javax.swing.JLabel();
+        jLabelTercerL = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabelRegresar = new javax.swing.JLabel();
-        jButtonJugar = new javax.swing.JButton();
+        jButtonVolverAJugar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabelPrimerL.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
+        jLabelPrimerL.setText("jLabel5");
+        getContentPane().add(jLabelPrimerL, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, -1, -1));
+
+        jLabelSegundoL.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
+        jLabelSegundoL.setText("jLabel6");
+        getContentPane().add(jLabelSegundoL, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, -1, -1));
+
+        jLabelTercerL.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
+        jLabelTercerL.setText("jLabel7");
+        getContentPane().add(jLabelTercerL, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 370, -1, -1));
+
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
         jLabel4.setText("3°");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 300, 180, 50));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 290, 180, 50));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
         jLabel3.setText("2°");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 180, 50));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 180, 50));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
         jLabel2.setText("1°");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 180, 50));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, 180, 50));
 
-        jLabelRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/flecha_regresar.png"))); // NOI18N
-        jLabelRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(jLabelRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 80, 140, 90));
-
-        jButtonJugar.setText("Volver a jugar!");
-        getContentPane().add(jButtonJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 530, 150, 50));
+        jButtonVolverAJugar.setText("Volver a jugar!");
+        getContentPane().add(jButtonVolverAJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 530, 150, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo-blanco-bordes-naranja-1 (2).jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 730));
@@ -100,11 +110,13 @@ public class Interfaz_Resultados extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton jButtonJugar;
+    public javax.swing.JButton jButtonVolverAJugar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    public javax.swing.JLabel jLabelRegresar;
+    public javax.swing.JLabel jLabelPrimerL;
+    public javax.swing.JLabel jLabelSegundoL;
+    public javax.swing.JLabel jLabelTercerL;
     // End of variables declaration//GEN-END:variables
 }
