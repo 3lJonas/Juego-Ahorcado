@@ -98,47 +98,40 @@ public class Torneo {
         this.actualizarInterfaz();
     }
 
-    private void siguiente() {
-
-        // Verificar si el jugador actual ha completado la palabra y si se ha alcanzado la ronda final
-        Jugador jugadorActual = jugadores.get(this.jugadorActual);
-
-        if (jugadorActual.getAdivino() && this.ronda == this.totRondas) {
-            jugadoresCompletados.add(jugadorActual);
-            jugadores.remove(jugadorActual); // Mover jugador a la lista de completados
-
-            // Ajustar el índice si el jugador actual fue removido
-            if (this.jugadorActual >= jugadores.size()) {
-
-            }
-
-            // Si ya no quedan jugadores, finalizar el torneo
-            if (jugadores.isEmpty()) {
-                // Cerrar la interfaz del juego y abrir la de resultados
-                this.intJuego.dispose();
-                Interfaz_Resultados r = new Interfaz_Resultados();
-                System.out.println(Arrays.toString(this.jugadoresCompletados.toArray()));
-                r.setVisible(true);
-                return; // Terminar la función aquí ya que no hay más jugadores
-            }
-        } else {
-            if (jugadorActual.getAdivino()) {
-                // Si el jugador ha adivinado, avanzar al siguiente jugador sin incrementar la ronda
-                this.jugadorActual = (this.jugadorActual ) % jugadores.size();
-
-            } else {
-                // Avanzar al siguiente jugador
-                this.jugadorActual = (this.jugadorActual + 1) % jugadores.size();
-
-            }
-            this.actualizarInterfaz();
-        }
-
+   private void siguiente() {
+    // Si no hay jugadores, no hacer nada
+    if (jugadores.isEmpty()) {
+        System.out.println("jug: " + Arrays.toString(this.jugadores.toArray()));
+        System.out.println("comp: " + Arrays.toString(this.jugadoresCompletados.toArray()));
+        return;
     }
+
+    // Verificar si todos los jugadores han completado o agotado sus intentos
+    boolean todosCompletadosOAgotados = true;
+    for (Jugador jugador : jugadores) {
+        if (!jugador.getAdivino() && jugador.getIntentos() > 0) {
+            todosCompletadosOAgotados = false;
+            break;
+        }
+    }
+
+    // Si todos los jugadores han completado o agotado sus intentos, no hacer nada
+    if (todosCompletadosOAgotados) {
+        
+        return;
+    }
+
+    do {
+        System.out.println("do while");
+        this.jugadorActual = (this.jugadorActual + 1) % jugadores.size();
+    } while (jugadores.get(this.jugadorActual).getAdivino() || jugadores.get(this.jugadorActual).getIntentos() == 0);
+
+    this.actualizarInterfaz();
+}
+
 
     public void jugarRonda() {
         if (this.ronda <= this.totRondas) {
-
             Jugador jugador = jugadores.get(jugadorActual);
             Palabra palabra = palabrasJugador.get(jugador);
             StringBuilder palabraOculta = palabrasOcultas.get(jugador);
@@ -159,7 +152,6 @@ public class Torneo {
                         } else {
                             jugador.sumarPuntaje(10); // Puntos por letra correcta
                             actualizarPalabraOculta(palabra, palabraOculta, letra);
-
                         }
 
                         this.actualizarInterfaz();
@@ -169,12 +161,11 @@ public class Torneo {
                             jugador.setAdivino(true);
                             jugador.sumarPuntaje(50); // Bonificación por completar la palabra
                             jugador.sumarPuntaje(jugador.getIntentos() * 10); // Puntos por intentos restantes
-                            // Si el jugador ha adivinado, avanzar al siguiente jugador sin incrementar la ronda
-                            delayTimer.restart(); // Iniciar el timer para esperar antes de pasar al siguiente jugador
-                            this.jugadorActual = (this.jugadorActual + 1) % jugadores.size();
-
+                            actualizarInterfaz();
+                           JOptionPane.showMessageDialog(null,"adivino");
+                            delayTimer.restart();
                             siguiente(); // Si ha completado la palabra, pasar automáticamente al siguiente jugador
-
+                         
                         }
                     }
                 } else {
@@ -185,7 +176,7 @@ public class Torneo {
             if (jugador.getIntentos() == 0) {
                 JOptionPane.showMessageDialog(null, "Se terminó el juego para " + jugador.getNombre());
                 siguiente();
-                return; // Terminar la función aquí para evitar continuar después de cambiar de turno
+               
             }
 
             this.intJuego.letraJugador1.setText("");
