@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/C:/Users/ASUS%20GAMER/Documents/Proyectos%20%20Netbeans%20nuevos/Juego-ahorcado/JuegoAhorcadoConsola/src/controlador/ControladorMenu.java</file>
             <file>file:/C:/Users/ASUS%20GAMER/Documents/Proyectos%20%20Netbeans%20nuevos/Juego-ahorcado/JuegoAhorcadoConsola/src/modelo/Torneo.java</file>
@@ -13,5 +14,8 @@
             <file>file:/C:/Users/ASUS%20GAMER/Documents/Proyectos%20%20Netbeans%20nuevos/Juego-ahorcado/JuegoAhorcadoConsola/src/juegoAhorcado/Palabra.java</file>
             <file>file:/C:/Users/ASUS%20GAMER/Documents/Proyectos%20%20Netbeans%20nuevos/Juego-ahorcado/JuegoAhorcadoConsola/src/vista/Interfaz_Multijugador.java</file>
         </group>
+=======
+        <group/>
+>>>>>>> feature/beja
     </open-files>
 </project-private>
