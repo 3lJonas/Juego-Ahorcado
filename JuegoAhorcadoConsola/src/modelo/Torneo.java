@@ -27,6 +27,7 @@ import juegoAhorcado.Jugador;
 import juegoAhorcado.Palabra;
 import juegoAhorcado.Resultados;
 import vista.Interfaz_Juego;
+import vista.Interfaz_Menu;
 import vista.Interfaz_Multijugador;
 import vista.Interfaz_Resultados;
 
@@ -36,7 +37,7 @@ import vista.Interfaz_Resultados;
  */
 public class Torneo {
 
-    private MediaPlayer mediaPlayer;
+    private MediaPlayer mediaPlayerAcciones;
     private Interfaz_Resultados intResultados;
     private int jugadorActual;
     private ArrayList<Jugador> jugadores;
@@ -46,12 +47,14 @@ public class Torneo {
     private int ronda = 1;
     private Interfaz_Juego intJuego;
     private Interfaz_Multijugador intMultijugador;
+    private Interfaz_Menu intMenu;
     private Map<Jugador, Palabra> palabrasJugador;
     private Map<Jugador, StringBuilder> palabrasOcultas;
     private Map<Jugador, Set<Character>> letrasUsadasJugador;
     private Timer delayTimer;
 
-    public Torneo(ArrayList<Jugador> jugadores, int totRondas, Interfaz_Juego intJuego, Interfaz_Multijugador intMultijugador, Interfaz_Resultados intResultados) {
+    public Torneo(ArrayList<Jugador> jugadores, int totRondas, Interfaz_Juego intJuego, Interfaz_Multijugador intMultijugador, Interfaz_Resultados intResultados,Interfaz_Menu intMenu) {
+        this.intMenu=intMenu;
         this.jugadorActual = 0;
         this.jugadores = jugadores;
         this.intResultados = intResultados;
@@ -199,9 +202,10 @@ public class Torneo {
                             jugador.sumarPuntaje(50); // Bonificación por completar la palabra
                             jugador.sumarPuntaje(jugador.getIntentos() * 10); // Puntos por intentos restantes
                             actualizarInterfaz();
-
+                            this.intMenu.getMediaPlayer().pause();
                             this.intJuego.jLabelJugadorMensaje.setText("¡Ha adivinado la palabra!!!");
                             reproducirMusica("recursos/victoria.mp3", this::siguiente);
+                             this.intMenu.getMediaPlayer().play();
                         }
                     }
                 } else {
@@ -211,7 +215,9 @@ public class Torneo {
 
             if (jugador.getIntentos() == 0) {
                 this.intJuego.jLabelJugadorMensaje.setText("Perdiste tus oportunidades");
+                 this.intMenu.getMediaPlayer().pause();
                 reproducirMusica("recursos/muerte.mp3", this::siguiente);
+                 this.intMenu.getMediaPlayer().play();
             }
 
             this.intJuego.letraJugador1.setText("");
@@ -247,16 +253,16 @@ public class Torneo {
     private void reproducirMusica(String ruta, Runnable callback) {
         File audioJuego = new File(ruta);
         Media media = new Media(audioJuego.toURI().toString());
-        mediaPlayer = new MediaPlayer(media);
+        mediaPlayerAcciones = new MediaPlayer(media);
 
-        mediaPlayer.setOnEndOfMedia(() -> {
-            mediaPlayer.stop();
+        mediaPlayerAcciones.setOnEndOfMedia(() -> {
+            mediaPlayerAcciones.stop();
             if (callback != null) {
                 callback.run();
             }
         });
 
-        mediaPlayer.play();
+        mediaPlayerAcciones.play();
     }
 
     private void cargarResultados() {

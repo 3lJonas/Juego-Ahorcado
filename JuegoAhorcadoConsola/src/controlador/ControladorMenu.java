@@ -71,7 +71,7 @@ public class ControladorMenu implements ActionListener, MouseListener {
                     this.contrJuego.dispose();
                 }
                 // Crear una nueva instancia de ControladorJuego
-                this.contrJuego = new ControladorJuego(intJuego, pesMultiJugador, this.jugadores);
+                this.contrJuego = new ControladorJuego(intJuego, pesMultiJugador, this.jugadores,this.intMenu);
                // this.pesMultiJugador.setVisible(false);
                 this.contrJuego.getInterfaz().setLocationRelativeTo(null);
                 this.contrJuego.iniciarJuego();

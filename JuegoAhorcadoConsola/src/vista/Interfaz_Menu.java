@@ -49,6 +49,10 @@ public class Interfaz_Menu extends javax.swing.JFrame {
         resultdo.actualizarJTable("Historial de Jugadores.txt", this);
     }
 
+    public MediaPlayer getMediaPlayer() {
+        return this.mediaPlayer;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

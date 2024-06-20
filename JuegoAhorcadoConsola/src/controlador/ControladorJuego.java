@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import juegoAhorcado.Jugador;
 import modelo.Torneo;
 import vista.Interfaz_Juego;
+import vista.Interfaz_Menu;
 import vista.Interfaz_Multijugador;
 import vista.Interfaz_Resultados;
 
@@ -24,11 +25,13 @@ public class ControladorJuego implements ActionListener, MouseListener {
 
     private ArrayList<Jugador> jugadores;
     private Interfaz_Multijugador interfazAnterior;
+    private Interfaz_Menu intMenu;
     private Interfaz_Juego interfaz;
     private Interfaz_Resultados intResultados;
     private Torneo torneo;
 
-    public ControladorJuego(Interfaz_Juego interfaz, Interfaz_Multijugador interfazAnterior, ArrayList<Jugador> jugadores) {
+    public ControladorJuego(Interfaz_Juego interfaz, Interfaz_Multijugador interfazAnterior, ArrayList<Jugador> jugadores,Interfaz_Menu intMenu) {
+       this.intMenu=intMenu;
         this.intResultados = new Interfaz_Resultados();
         this.interfaz = interfaz;
         this.interfazAnterior = interfazAnterior;
@@ -39,7 +42,7 @@ public class ControladorJuego implements ActionListener, MouseListener {
         this.interfaz.adivinarJugador1.addActionListener(this);
         this.jugadores = jugadores;
 
-        this.torneo = new Torneo(this.jugadores, Integer.parseInt(interfazAnterior.jSpinnerRondas.getValue().toString()), interfaz, interfazAnterior,this.intResultados);
+        this.torneo = new Torneo(this.jugadores, Integer.parseInt(interfazAnterior.jSpinnerRondas.getValue().toString()), interfaz, interfazAnterior,this.intResultados,this.intMenu);
     }
 
     @Override
