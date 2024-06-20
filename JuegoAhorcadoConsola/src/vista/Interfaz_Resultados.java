@@ -26,9 +26,12 @@ public class Interfaz_Resultados extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelSegundoL = new javax.swing.JLabel();
-        jLabelTercerL = new javax.swing.JLabel();
         jLabelPrimerL = new javax.swing.JLabel();
+        jLabelPrimerLP = new javax.swing.JLabel();
+        jLabelSegundoL = new javax.swing.JLabel();
+        jLabelSegundoLP = new javax.swing.JLabel();
+        jLabelTercerL = new javax.swing.JLabel();
+        jLabelTercerL1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -39,32 +42,41 @@ public class Interfaz_Resultados extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabelPrimerL.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabelPrimerL.setText(" ");
+        getContentPane().add(jLabelPrimerL, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, 310, -1));
+
+        jLabelPrimerLP.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabelPrimerLP.setText(" ");
+        getContentPane().add(jLabelPrimerLP, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 250, 360, -1));
+
         jLabelSegundoL.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabelSegundoL.setText("jLabel5");
-        getContentPane().add(jLabelSegundoL, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 420, -1, -1));
+        jLabelSegundoL.setText(" ");
+        getContentPane().add(jLabelSegundoL, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 310, -1));
+
+        jLabelSegundoLP.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabelSegundoLP.setText(" ");
+        getContentPane().add(jLabelSegundoLP, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 310, -1));
 
         jLabelTercerL.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabelTercerL.setText("jLabel5");
-        getContentPane().add(jLabelTercerL, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 390, -1, -1));
+        jLabelTercerL.setText(" ");
+        getContentPane().add(jLabelTercerL, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 340, 280, -1));
 
-        jLabelPrimerL.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabelPrimerL.setText("jLabel5");
-        getContentPane().add(jLabelPrimerL, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, -1, -1));
+        jLabelTercerL1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabelTercerL1.setText(" ");
+        getContentPane().add(jLabelTercerL1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 400, 370, -1));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/tercerlugar.png"))); // NOI18N
-        jLabel4.setText("3°");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 300, 120, 80));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 270, 120, 80));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/segundolugar.png"))); // NOI18N
-        jLabel3.setText("2°");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 130, 70));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 130, 70));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/primerlugar.png"))); // NOI18N
-        jLabel2.setText("1°");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 120, 90));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 120, 90));
 
         jButtonVolverAJugar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/volver-a-publicar.png"))); // NOI18N
         jButtonVolverAJugar.setBorderPainted(false);
@@ -132,7 +144,10 @@ public class Interfaz_Resultados extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     public javax.swing.JLabel jLabelPrimerL;
+    public javax.swing.JLabel jLabelPrimerLP;
     public javax.swing.JLabel jLabelSegundoL;
+    public javax.swing.JLabel jLabelSegundoLP;
     public javax.swing.JLabel jLabelTercerL;
+    public javax.swing.JLabel jLabelTercerL1;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,6 +7,7 @@ package modelo;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,8 +15,14 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
+import javax.swing.Icon;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import javax.swing.UIManager;
 import juegoAhorcado.Jugador;
 import juegoAhorcado.Palabra;
 import juegoAhorcado.Resultados;
@@ -29,6 +36,7 @@ import vista.Interfaz_Resultados;
  */
 public class Torneo {
 
+    private MediaPlayer mediaPlayer;
     private Interfaz_Resultados intResultados;
     private int jugadorActual;
     private ArrayList<Jugador> jugadores;
@@ -43,11 +51,11 @@ public class Torneo {
     private Map<Jugador, Set<Character>> letrasUsadasJugador;
     private Timer delayTimer;
 
-    public Torneo(ArrayList<Jugador> jugadores, int totRondas, Interfaz_Juego intJuego, Interfaz_Multijugador intMultijugador,Interfaz_Resultados intResultados) {
+    public Torneo(ArrayList<Jugador> jugadores, int totRondas, Interfaz_Juego intJuego, Interfaz_Multijugador intMultijugador, Interfaz_Resultados intResultados) {
         this.jugadorActual = 0;
         this.jugadores = jugadores;
         this.intResultados = intResultados;
-        
+        new JFXPanel(); // Inicializar JavaFX en una aplicación Swing
         this.palabras = new ArrayList<>();
         this.totRondas = totRondas;
         this.intJuego = intJuego;
@@ -68,18 +76,39 @@ public class Torneo {
     }
 
     private void cargarPalabras() {
-        palabras.add(new Palabra("JAVA"));
+        palabras.add(new Palabra("HIPOPOTAMO"));
+        palabras.add(new Palabra("ORNITORRINCO"));
+        Icon icono = UIManager.getIcon("OptionPane.questionIcon");
 
         if (palabras.size() < (totRondas * this.jugadores.size())) {
             while (palabras.size() < (totRondas * this.jugadores.size())) {
-                String nuevaPalabra = JOptionPane.showInputDialog(null, "Según el número de rondas, se necesita una palabra diferente y hacen falta " + ((totRondas * this.jugadores.size()) - this.palabras.size()) + " palabra/s\nIngrese una nueva palabra: ");
-                if (!nuevaPalabra.isEmpty()) {
+                String nuevaPalabra = JOptionPane.showInputDialog(null, "Según el número de rondas, se necesita una palabra diferente y hacen falta " + ((totRondas * this.jugadores.size()) - this.palabras.size()) + " palabra/s\nIngrese una nueva palabra (mínimo 3 caracteres): ", "Ingreso de nuevas palabras", JOptionPane.QUESTION_MESSAGE);
+
+                // Verificar si el usuario cancela o cierra el cuadro de diálogo
+                if (nuevaPalabra == null) {
+                    int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea cancelar la entrada de nuevas palabras? Esto finalizará el torneo.", "Confirmar Cancelación", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, icono);
+                    if (respuesta == JOptionPane.YES_OPTION) {
+                        return; // Salir del método si el usuario confirma la cancelación
+                    } else {
+                        continue; // Continuar solicitando una nueva palabra si el usuario elige no cancelar
+                    }
+                }
+
+                if (!nuevaPalabra.isEmpty() && nuevaPalabra.length() >= 3) {
                     palabras.add(new Palabra(nuevaPalabra.toUpperCase()));
                 } else {
-                    JOptionPane.showMessageDialog(null, "Por favor, ingrese una palabra válida");
+                    JOptionPane.showMessageDialog(null, "Por favor, ingrese una palabra válida con al menos 3 caracteres.", "Entrada inválida", JOptionPane.ERROR_MESSAGE);
                 }
             }
+            if (palabras.size() == (totRondas * this.jugadores.size())) {
+                this.intMultijugador.setVisible(false);
+                this.intJuego.setVisible(true);
+            }
+        } else {
+            this.intMultijugador.setVisible(false);
+            this.intJuego.setVisible(true);
         }
+
     }
 
     private void prepararPalabrasJugadores() {
@@ -123,8 +152,10 @@ public class Torneo {
         }
 
         do {
-           
+            this.intJuego.letraJugador1.setEnabled(true);
+            this.intJuego.adivinarJugador1.setEnabled(true);
             this.jugadorActual = (this.jugadorActual + 1) % jugadores.size();
+             this.intJuego.jLabelJugadorMensaje.setText("");
         } while (jugadores.get(this.jugadorActual).getAdivino() || jugadores.get(this.jugadorActual).getIntentos() == 0);
 
         this.actualizarInterfaz();
@@ -145,11 +176,17 @@ public class Torneo {
                     } else {
                         letrasUsadas.add(letra);
                         if (!palabra.adivinarLetra(letra)) {
+                            this.intJuego.letraJugador1.setEnabled(false);
+                            this.intJuego.adivinarJugador1.setEnabled(false);
                             jugador.decrementarVidas();
                             jugador.restarPuntaje(5); // Penalización por letra incorrecta
-                            JOptionPane.showMessageDialog(null, "Letra incorrecta. Vidas restantes: " + jugador.getIntentos());
+                            this.intJuego.jLabelJugadorMensaje.setText("Letra incorrecta. ");
+
                             this.cambiarImagen(jugador);
                         } else {
+                            this.intJuego.letraJugador1.setEnabled(false);
+                            this.intJuego.adivinarJugador1.setEnabled(false);
+                            this.intJuego.jLabelJugadorMensaje.setText("Letra correcta. ");
                             jugador.sumarPuntaje(10); // Puntos por letra correcta
                             actualizarPalabraOculta(palabra, palabraOculta, letra);
                         }
@@ -162,10 +199,9 @@ public class Torneo {
                             jugador.sumarPuntaje(50); // Bonificación por completar la palabra
                             jugador.sumarPuntaje(jugador.getIntentos() * 10); // Puntos por intentos restantes
                             actualizarInterfaz();
-                            JOptionPane.showMessageDialog(null, "adivino");
-                            delayTimer.restart();
-                            siguiente(); // Si ha completado la palabra, pasar automáticamente al siguiente jugador
 
+                            this.intJuego.jLabelJugadorMensaje.setText("¡Ha adivinado la palabra!!!");
+                            reproducirMusica("recursos/victoria.mp3", this::siguiente);
                         }
                     }
                 } else {
@@ -174,9 +210,8 @@ public class Torneo {
             }
 
             if (jugador.getIntentos() == 0) {
-                JOptionPane.showMessageDialog(null, "Se terminó el juego para " + jugador.getNombre());
-                siguiente();
-
+                this.intJuego.jLabelJugadorMensaje.setText("Perdiste tus oportunidades");
+                reproducirMusica("recursos/muerte.mp3", this::siguiente);
             }
 
             this.intJuego.letraJugador1.setText("");
@@ -209,36 +244,55 @@ public class Torneo {
         }
     }
 
-   private void cargarResultados() {
-    this.resultado = new Resultados(this.jugadores);
-    this.intJuego.dispose();
-    this.resultado.ordenarDecreciente();
-    this.resultado.actualizarHistorial("Historial de Jugadores.txt");
-    this.jugadores = this.resultado.getJugadores(); // aquí ya está ordenada la colección de jugadores
+    private void reproducirMusica(String ruta, Runnable callback) {
+        File audioJuego = new File(ruta);
+        Media media = new Media(audioJuego.toURI().toString());
+        mediaPlayer = new MediaPlayer(media);
 
-    this.intResultados.setLocationRelativeTo(null);
-    
-    // Actualizar los JLabels con los nombres y puntuaciones de los jugadores
-    if (jugadores.size() > 0) {
-        this.intResultados.jLabelPrimerL.setText(jugadores.get(0).getNombre() + " - " + jugadores.get(0).getPuntaje() + " puntos");
-    } else {
-        this.intResultados.jLabelPrimerL.setText("1°: -");
+        mediaPlayer.setOnEndOfMedia(() -> {
+            mediaPlayer.stop();
+            if (callback != null) {
+                callback.run();
+            }
+        });
+
+        mediaPlayer.play();
     }
-    
-    if (jugadores.size() > 1) {
-        this.intResultados.jLabelSegundoL.setText(jugadores.get(1).getNombre() + " - " + jugadores.get(1).getPuntaje() + " puntos");
-    } else {
-        this.intResultados.jLabelSegundoL.setText("2°: -");
+
+    private void cargarResultados() {
+        this.resultado = new Resultados(this.jugadores);
+        this.intJuego.dispose();
+        this.resultado.ordenarDecreciente();
+        this.resultado.actualizarHistorial("Historial de Jugadores.txt");
+        this.jugadores = this.resultado.getJugadores(); // aquí ya está ordenada la colección de jugadores
+
+        this.intResultados.setLocationRelativeTo(null);
+
+        // Actualizar los JLabels con los nombres y puntuaciones de los jugadores
+        if (jugadores.size() > 0) {
+            this.intResultados.jLabelPrimerL.setText(jugadores.get(0).getNombre());
+            this.intResultados.jLabelPrimerLP.setText(jugadores.get(0).getPuntaje() + " puntos");
+        } else {
+            this.intResultados.jLabelPrimerL.setText("");
+        }
+
+        if (jugadores.size() > 1) {
+            this.intResultados.jLabelSegundoL.setText(jugadores.get(1).getNombre() );
+            this.intResultados.jLabelSegundoLP.setText(jugadores.get(1).getPuntaje() + " puntos");
+
+        } else {
+            this.intResultados.jLabelSegundoL.setText("");
+        }
+
+        if (jugadores.size() > 2) {
+            this.intResultados.jLabelTercerL.setText(jugadores.get(2).getNombre() );
+            this.intResultados.jLabelTercerL1.setText(jugadores.get(2).getNombre() + " - " + jugadores.get(2).getPuntaje() + " puntos");
+        } else {
+            this.intResultados.jLabelTercerL.setText("");
+        }
+
+        this.intResultados.setVisible(true);
     }
-    
-    if (jugadores.size() > 2) {
-        this.intResultados.jLabelTercerL.setText(jugadores.get(2).getNombre() + " - " + jugadores.get(2).getPuntaje() + " puntos");
-    } else {
-        this.intResultados.jLabelTercerL.setText("3°: -");
-    }
-    
-    this.intResultados.setVisible(true);
-}
 
     private void actualizarPalabraOculta(Palabra palabra, StringBuilder palabraOculta, char letra) {
         for (int i = 0; i < palabra.mostrarPalabra().length(); i++) {
@@ -281,6 +335,7 @@ public class Torneo {
         this.intJuego.jLabelIntentos.setText("Intentos: " + jugador.getIntentos());
         this.intJuego.jLabelJugador.setText("Turno de " + jugador.getNombre());
         this.intJuego.jLabelPuntuacion.setText("Puntuación: " + jugador.getPuntaje());
+        
     }
 
     public ArrayList<Jugador> getJugadores() {

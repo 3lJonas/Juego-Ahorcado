@@ -72,10 +72,10 @@ public class ControladorMenu implements ActionListener, MouseListener {
                 }
                 // Crear una nueva instancia de ControladorJuego
                 this.contrJuego = new ControladorJuego(intJuego, pesMultiJugador, this.jugadores);
-                this.pesMultiJugador.setVisible(false);
+               // this.pesMultiJugador.setVisible(false);
                 this.contrJuego.getInterfaz().setLocationRelativeTo(null);
                 this.contrJuego.iniciarJuego();
-                this.contrJuego.getInterfaz().setVisible(true);
+                //this.contrJuego.getInterfaz().setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Todos los jugadores deben tener nombres válidos y estar listos!!!");
                 this.jugadores.clear();
@@ -178,6 +178,7 @@ public class ControladorMenu implements ActionListener, MouseListener {
         if (this.pesMultiJugador.jLabelRegresar == e.getSource()) {
             this.pesMultiJugador.setVisible(false);
             this.intMenu.setVisible(true);
+            this.intMenu.agregarPuntuaciones();
             this.resetMultiJugador();
         }
     }

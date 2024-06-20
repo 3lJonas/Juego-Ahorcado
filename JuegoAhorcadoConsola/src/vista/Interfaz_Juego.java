@@ -26,6 +26,7 @@ public class Interfaz_Juego extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabelJugadorMensaje = new javax.swing.JLabel();
         jLabelIntentos = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabelJugador = new javax.swing.JLabel();
@@ -43,9 +44,13 @@ public class Interfaz_Juego extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabelJugadorMensaje.setFont(new java.awt.Font("Comic Sans MS", 3, 24)); // NOI18N
+        jLabelJugadorMensaje.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(jLabelJugadorMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 400, 50));
+
         jLabelIntentos.setFont(new java.awt.Font("Comic Sans MS", 3, 48)); // NOI18N
         jLabelIntentos.setText("jLabel2");
-        getContentPane().add(jLabelIntentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 180, 380, 50));
+        getContentPane().add(jLabelIntentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 220, 380, 50));
 
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 3, 24)); // NOI18N
         jLabel3.setText("Letra");
@@ -61,7 +66,7 @@ public class Interfaz_Juego extends javax.swing.JFrame {
 
         jLabelPuntuacion.setFont(new java.awt.Font("Comic Sans MS", 3, 36)); // NOI18N
         jLabelPuntuacion.setText("jLabel2");
-        getContentPane().add(jLabelPuntuacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 320, 50));
+        getContentPane().add(jLabelPuntuacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 320, 50));
 
         palabraJugador1.setEnabled(false);
         getContentPane().add(palabraJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, 350, -1));
@@ -70,10 +75,11 @@ public class Interfaz_Juego extends javax.swing.JFrame {
         adivinarJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/adivinar.png"))); // NOI18N
         adivinarJugador1.setBorderPainted(false);
         adivinarJugador1.setContentAreaFilled(false);
+        adivinarJugador1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(adivinarJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 510, -1, -1));
 
         jLabelRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/flecha_regresar.png"))); // NOI18N
-        jLabelRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(jLabelRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 50, 140, 90));
 
         imagenJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Recurso 1.png"))); // NOI18N
@@ -133,6 +139,7 @@ public class Interfaz_Juego extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     public javax.swing.JLabel jLabelIntentos;
     public javax.swing.JLabel jLabelJugador;
+    public javax.swing.JLabel jLabelJugadorMensaje;
     public javax.swing.JLabel jLabelPuntuacion;
     public javax.swing.JLabel jLabelRegresar;
     public javax.swing.JLabel jLabelRonda;

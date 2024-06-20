@@ -202,7 +202,7 @@ public class Interfaz_Multijugador extends javax.swing.JFrame {
         getContentPane().add(jPanelJugador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, 170, 270));
 
         jLabelRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/flecha_regresar.png"))); // NOI18N
-        jLabelRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(jLabelRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 60, 160, 110));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo1.png"))); // NOI18N

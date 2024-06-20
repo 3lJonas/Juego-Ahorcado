@@ -5,8 +5,10 @@
 package vista;
 
 import java.io.File;
+import javafx.util.Duration;
 import java.util.ArrayList;
-//import javafx.embed.swing.JFXPanel;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import juegoAhorcado.Resultados;
@@ -22,22 +24,27 @@ public class Interfaz_Menu extends javax.swing.JFrame {
      */
     private MediaPlayer mediaPlayer;
 
-    public Interfaz_Menu() {
-        JFXPanel fxPanel = new JFXPanel();
+      public Interfaz_Menu() {
+        // Necesario para inicializar JavaFX en una aplicación Swing
+        new JFXPanel(); // Esto asegura que el toolkit de JavaFX esté inicializado
 
         initComponents();
-        reproducirMusica();
+        Platform.runLater(this::reproducirMusica);
         agregarPuntuaciones();
     }
 
-    private void reproducirMusica() {
-        File auidiojuego = new File("C:/Users/ASUS VIVOBOOK/Downloads/juego.mp3");
-        Media media = new Media(auidiojuego.toURI().toString());
+     private void reproducirMusica() {
+        File audioJuego = new File("recursos/juego.mp3");
+        Media media = new Media(audioJuego.toURI().toString());
         mediaPlayer = new MediaPlayer(media);
+        
+        // Añadir un listener para repetir la música cuando finalice
+        mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
+        
         mediaPlayer.play();
     }
 
-    private void agregarPuntuaciones() {
+    public void agregarPuntuaciones() {
         Resultados resultdo = new Resultados(new ArrayList<>());
         resultdo.actualizarJTable("Historial de Jugadores.txt", this);
     }
@@ -76,6 +83,11 @@ public class Interfaz_Menu extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTablePuntajes.setEnabled(false);
+        jTablePuntajes.setFocusable(false);
+        jTablePuntajes.setRowSelectionAllowed(false);
+        jTablePuntajes.setShowHorizontalLines(false);
+        jTablePuntajes.setShowVerticalLines(false);
         jScrollPane1.setViewportView(jTablePuntajes);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 330, 410, 70));
@@ -84,6 +96,7 @@ public class Interfaz_Menu extends javax.swing.JFrame {
         jButtonJugar.setBorder(null);
         jButtonJugar.setBorderPainted(false);
         jButtonJugar.setContentAreaFilled(false);
+        jButtonJugar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonJugar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonJugarActionPerformed(evt);
@@ -97,6 +110,7 @@ public class Interfaz_Menu extends javax.swing.JFrame {
         Saliricono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/saliricon.png"))); // NOI18N
         Saliricono.setBorderPainted(false);
         Saliricono.setContentAreaFilled(false);
+        Saliricono.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Saliricono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SaliriconoActionPerformed(evt);
