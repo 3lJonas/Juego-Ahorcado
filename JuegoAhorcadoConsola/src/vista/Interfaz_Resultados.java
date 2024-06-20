@@ -32,7 +32,6 @@ public class Interfaz_Resultados extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabelRegresar = new javax.swing.JLabel();
         jButtonVolverAJugar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -67,13 +66,10 @@ public class Interfaz_Resultados extends javax.swing.JFrame {
         jLabel2.setText("1°");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 120, 90));
 
-        jLabelRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/flecha_regresar.png"))); // NOI18N
-        jLabelRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(jLabelRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 80, 140, 90));
-
         jButtonVolverAJugar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/volver-a-publicar.png"))); // NOI18N
         jButtonVolverAJugar.setBorderPainted(false);
         jButtonVolverAJugar.setContentAreaFilled(false);
+        jButtonVolverAJugar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonVolverAJugar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVolverAJugarActionPerformed(evt);
@@ -136,7 +132,6 @@ public class Interfaz_Resultados extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     public javax.swing.JLabel jLabelPrimerL;
-    public javax.swing.JLabel jLabelRegresar;
     public javax.swing.JLabel jLabelSegundoL;
     public javax.swing.JLabel jLabelTercerL;
     // End of variables declaration//GEN-END:variables

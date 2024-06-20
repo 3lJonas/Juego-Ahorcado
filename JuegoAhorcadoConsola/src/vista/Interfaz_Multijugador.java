@@ -64,6 +64,7 @@ public class Interfaz_Multijugador extends javax.swing.JFrame {
 
         jSpinnerRondas.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jSpinnerRondas.setToolTipText("");
+        jSpinnerRondas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jSpinnerRondas.setValue(1);
         getContentPane().add(jSpinnerRondas, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 500, 70, 30));
 
@@ -71,6 +72,7 @@ public class Interfaz_Multijugador extends javax.swing.JFrame {
         jButtonIniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iniciar.png"))); // NOI18N
         jButtonIniciar.setBorderPainted(false);
         jButtonIniciar.setContentAreaFilled(false);
+        jButtonIniciar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonIniciarActionPerformed(evt);
@@ -82,12 +84,14 @@ public class Interfaz_Multijugador extends javax.swing.JFrame {
         jButtonAñadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar.png"))); // NOI18N
         jButtonAñadir.setBorderPainted(false);
         jButtonAñadir.setContentAreaFilled(false);
+        jButtonAñadir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(jButtonAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 80, -1));
 
         jButtonQuitar.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         jButtonQuitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/quitarjug.png"))); // NOI18N
         jButtonQuitar.setBorderPainted(false);
         jButtonQuitar.setContentAreaFilled(false);
+        jButtonQuitar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonQuitar.setEnabled(false);
         jButtonQuitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,6 +110,7 @@ public class Interfaz_Multijugador extends javax.swing.JFrame {
         jLabel8.setText("Nombre");
         jPanelJugador3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
 
+        jTextFieldNombreJugador3.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextFieldNombreJugador3.setEnabled(false);
         jTextFieldNombreJugador3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,6 +120,7 @@ public class Interfaz_Multijugador extends javax.swing.JFrame {
         jPanelJugador3.add(jTextFieldNombreJugador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 150, -1));
 
         jButtonListo3.setText("No listo");
+        jButtonListo3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonListo3.setEnabled(false);
         jPanelJugador3.add(jButtonListo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 130, -1));
 
@@ -127,8 +133,10 @@ public class Interfaz_Multijugador extends javax.swing.JFrame {
         jPanelJugador1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 150));
 
         jButtonListo1.setText("No listo");
+        jButtonListo1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanelJugador1.add(jButtonListo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 130, -1));
 
+        jTextFieldNombreJugador1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextFieldNombreJugador1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNombreJugador1ActionPerformed(evt);
@@ -151,6 +159,7 @@ public class Interfaz_Multijugador extends javax.swing.JFrame {
         jLabel10.setText("Nombre");
         jPanelJugador4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
 
+        jTextFieldNombreJugador4.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextFieldNombreJugador4.setEnabled(false);
         jTextFieldNombreJugador4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,6 +169,7 @@ public class Interfaz_Multijugador extends javax.swing.JFrame {
         jPanelJugador4.add(jTextFieldNombreJugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 150, -1));
 
         jButtonListo4.setText("No listo");
+        jButtonListo4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonListo4.setEnabled(false);
         jPanelJugador4.add(jButtonListo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 130, -1));
 
@@ -175,6 +185,7 @@ public class Interfaz_Multijugador extends javax.swing.JFrame {
         jLabel6.setText("Nombre");
         jPanelJugador2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
 
+        jTextFieldNombreJugador2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextFieldNombreJugador2.setEnabled(false);
         jTextFieldNombreJugador2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,6 +195,7 @@ public class Interfaz_Multijugador extends javax.swing.JFrame {
         jPanelJugador2.add(jTextFieldNombreJugador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 150, -1));
 
         jButtonListo2.setText("No listo");
+        jButtonListo2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonListo2.setEnabled(false);
         jPanelJugador2.add(jButtonListo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 130, -1));
 

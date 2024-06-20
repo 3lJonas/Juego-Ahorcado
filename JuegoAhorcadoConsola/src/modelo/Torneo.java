@@ -55,7 +55,7 @@ public class Torneo {
         this.palabrasJugador = new HashMap<>();
         this.palabrasOcultas = new HashMap<>();
         this.letrasUsadasJugador = new HashMap<>();
-        this.delayTimer = new Timer(1000, new ActionListener() {
+        this.delayTimer = new Timer(1500, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 siguiente();
@@ -123,7 +123,7 @@ public class Torneo {
         }
 
         do {
-            System.out.println("do while");
+           
             this.jugadorActual = (this.jugadorActual + 1) % jugadores.size();
         } while (jugadores.get(this.jugadorActual).getAdivino() || jugadores.get(this.jugadorActual).getIntentos() == 0);
 
@@ -213,6 +213,7 @@ public class Torneo {
     this.resultado = new Resultados(this.jugadores);
     this.intJuego.dispose();
     this.resultado.ordenarDecreciente();
+    this.resultado.actualizarHistorial("Historial de Jugadores.txt");
     this.jugadores = this.resultado.getJugadores(); // aquí ya está ordenada la colección de jugadores
 
     this.intResultados.setLocationRelativeTo(null);

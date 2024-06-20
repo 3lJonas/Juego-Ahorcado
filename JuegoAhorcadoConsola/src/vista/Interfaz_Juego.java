@@ -57,7 +57,7 @@ public class Interfaz_Juego extends javax.swing.JFrame {
 
         jLabelRonda.setFont(new java.awt.Font("Comic Sans MS", 3, 36)); // NOI18N
         jLabelRonda.setText("jLabel2");
-        getContentPane().add(jLabelRonda, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 160, 50));
+        getContentPane().add(jLabelRonda, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 260, 50));
 
         jLabelPuntuacion.setFont(new java.awt.Font("Comic Sans MS", 3, 36)); // NOI18N
         jLabelPuntuacion.setText("jLabel2");
@@ -70,7 +70,7 @@ public class Interfaz_Juego extends javax.swing.JFrame {
         adivinarJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/adivinar.png"))); // NOI18N
         adivinarJugador1.setBorderPainted(false);
         adivinarJugador1.setContentAreaFilled(false);
-        getContentPane().add(adivinarJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 510, -1, -1));
+        getContentPane().add(adivinarJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 510, -1, -1));
 
         jLabelRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/flecha_regresar.png"))); // NOI18N
         jLabelRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -81,7 +81,7 @@ public class Interfaz_Juego extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 3, 24)); // NOI18N
         jLabel2.setText("Adivinar");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 580, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 600, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo1.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 640));

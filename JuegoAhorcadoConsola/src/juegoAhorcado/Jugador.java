@@ -48,6 +48,10 @@ public class Jugador {
         return this.puntaje;
     }
 
+    public void setPuntaje(int puntaje) {
+        this.puntaje = puntaje;
+    }
+
     public void sumarPuntaje(int puntos) {
         puntaje += puntos;
     }

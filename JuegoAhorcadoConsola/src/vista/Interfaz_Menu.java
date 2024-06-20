@@ -5,9 +5,11 @@
 package vista;
 
 import java.io.File;
-import javafx.embed.swing.JFXPanel;
+import java.util.ArrayList;
+//import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import juegoAhorcado.Resultados;
 
 /**
  *
@@ -19,11 +21,13 @@ public class Interfaz_Menu extends javax.swing.JFrame {
      * Creates new form Interfaz_Login
      */
     private MediaPlayer mediaPlayer;
+
     public Interfaz_Menu() {
-        JFXPanel fxPanel = new JFXPanel(); 
-        
+        JFXPanel fxPanel = new JFXPanel();
+
         initComponents();
         reproducirMusica();
+        agregarPuntuaciones();
     }
 
     private void reproducirMusica() {
@@ -33,7 +37,10 @@ public class Interfaz_Menu extends javax.swing.JFrame {
         mediaPlayer.play();
     }
 
-
+    private void agregarPuntuaciones() {
+        Resultados resultdo = new Resultados(new ArrayList<>());
+        resultdo.actualizarJTable("Historial de Jugadores.txt", this);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,7 +51,8 @@ public class Interfaz_Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonMejoresPuntuaciones = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTablePuntajes = new javax.swing.JTable();
         jButtonJugar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         Saliricono = new javax.swing.JButton();
@@ -58,22 +66,24 @@ public class Interfaz_Menu extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButtonMejoresPuntuaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconpunt.png"))); // NOI18N
-        jButtonMejoresPuntuaciones.setBorderPainted(false);
-        jButtonMejoresPuntuaciones.setContentAreaFilled(false);
-        jButtonMejoresPuntuaciones.setOpaque(false);
-        jButtonMejoresPuntuaciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonMejoresPuntuacionesActionPerformed(evt);
+        jTablePuntajes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        });
-        getContentPane().add(jButtonMejoresPuntuaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 280, 140, 130));
+        ));
+        jScrollPane1.setViewportView(jTablePuntajes);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 330, 410, 70));
 
         jButtonJugar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconjugar.png"))); // NOI18N
         jButtonJugar.setBorder(null);
         jButtonJugar.setBorderPainted(false);
         jButtonJugar.setContentAreaFilled(false);
-        jButtonJugar.setOpaque(false);
         jButtonJugar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonJugarActionPerformed(evt);
@@ -99,8 +109,8 @@ public class Interfaz_Menu extends javax.swing.JFrame {
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 450, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 3, 36)); // NOI18N
-        jLabel5.setText("Mejor Puntuacion");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, -1, -1));
+        jLabel5.setText("Puntajes");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 260, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Comic Sans MS", 3, 36)); // NOI18N
         jLabel6.setText("Jugar");
@@ -116,10 +126,6 @@ public class Interfaz_Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonMejoresPuntuacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMejoresPuntuacionesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonMejoresPuntuacionesActionPerformed
-
     private void jButtonJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJugarActionPerformed
 
 
@@ -127,7 +133,7 @@ public class Interfaz_Menu extends javax.swing.JFrame {
 
     private void SaliriconoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaliriconoActionPerformed
 
-                System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_SaliriconoActionPerformed
 
     /**
@@ -169,12 +175,13 @@ public class Interfaz_Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Saliricono;
     public javax.swing.JButton jButtonJugar;
-    public javax.swing.JButton jButtonMejoresPuntuaciones;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JTable jTablePuntajes;
     // End of variables declaration//GEN-END:variables
 }
