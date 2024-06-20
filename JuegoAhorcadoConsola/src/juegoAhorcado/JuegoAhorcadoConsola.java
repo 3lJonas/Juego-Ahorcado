@@ -17,12 +17,9 @@ public class JuegoAhorcadoConsola {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        try {
-               ControladorMenu cm=new ControladorMenu();
+       
+       ControladorMenu cm=new ControladorMenu();
        cm.getIntMenu().setVisible(true);
        cm.getIntMenu().setLocationRelativeTo(null);
-        } catch (Exception e) {
-        }
-    
     }
 }
