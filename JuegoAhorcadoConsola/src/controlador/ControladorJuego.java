@@ -78,7 +78,7 @@ public class ControladorJuego implements ActionListener, MouseListener {
     }
 
     public void dispose() {
-        // Eliminar listeners para prevenir duplicación de eventos
+        
         this.interfaz.jLabelRegresar.removeMouseListener(this);
         this.interfaz.palabraJugador1.removeActionListener(this);
         this.interfaz.letraJugador1.removeActionListener(this);

@@ -1,4 +1,2 @@
 Israel,305
 Carlos,220
-David,200
-Jonathan,150

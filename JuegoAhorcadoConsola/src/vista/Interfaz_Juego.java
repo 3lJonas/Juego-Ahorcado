@@ -50,7 +50,7 @@ public class Interfaz_Juego extends javax.swing.JFrame {
 
         jLabelIntentos.setFont(new java.awt.Font("Comic Sans MS", 3, 48)); // NOI18N
         jLabelIntentos.setText("jLabel2");
-        getContentPane().add(jLabelIntentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 220, 380, 50));
+        getContentPane().add(jLabelIntentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 220, 390, 50));
 
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 3, 24)); // NOI18N
         jLabel3.setText("Letra");
@@ -58,7 +58,7 @@ public class Interfaz_Juego extends javax.swing.JFrame {
 
         jLabelJugador.setFont(new java.awt.Font("Comic Sans MS", 3, 48)); // NOI18N
         jLabelJugador.setText("jLabel2");
-        getContentPane().add(jLabelJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 380, 50));
+        getContentPane().add(jLabelJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 510, 50));
 
         jLabelRonda.setFont(new java.awt.Font("Comic Sans MS", 3, 36)); // NOI18N
         jLabelRonda.setText("jLabel2");

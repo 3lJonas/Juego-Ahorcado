@@ -26,57 +26,22 @@ public class Interfaz_Resultados extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelPrimerL = new javax.swing.JLabel();
-        jLabelPrimerLP = new javax.swing.JLabel();
+        jButtonVolverAJugar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         jLabelSegundoL = new javax.swing.JLabel();
         jLabelSegundoLP = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabelPrimerL = new javax.swing.JLabel();
+        jLabelPrimerLP = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabelTercerL = new javax.swing.JLabel();
         jLabelTercerL1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButtonVolverAJugar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabelPrimerL.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabelPrimerL.setText(" ");
-        getContentPane().add(jLabelPrimerL, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, 310, -1));
-
-        jLabelPrimerLP.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabelPrimerLP.setText(" ");
-        getContentPane().add(jLabelPrimerLP, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 250, 360, -1));
-
-        jLabelSegundoL.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabelSegundoL.setText(" ");
-        getContentPane().add(jLabelSegundoL, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 310, -1));
-
-        jLabelSegundoLP.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabelSegundoLP.setText(" ");
-        getContentPane().add(jLabelSegundoLP, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 310, -1));
-
-        jLabelTercerL.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabelTercerL.setText(" ");
-        getContentPane().add(jLabelTercerL, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 340, 280, -1));
-
-        jLabelTercerL1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabelTercerL1.setText(" ");
-        getContentPane().add(jLabelTercerL1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 400, 370, -1));
-
-        jLabel4.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/tercerlugar.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 270, 120, 80));
-
-        jLabel3.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/segundolugar.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 130, 70));
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/primerlugar.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 120, 90));
 
         jButtonVolverAJugar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/volver-a-publicar.png"))); // NOI18N
         jButtonVolverAJugar.setBorderPainted(false);
@@ -88,6 +53,48 @@ public class Interfaz_Resultados extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonVolverAJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 480, 150, 80));
+
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/segundolugar.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 130, 70));
+
+        jLabelSegundoL.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabelSegundoL.setText(" ");
+        jPanel1.add(jLabelSegundoL, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 310, -1));
+
+        jLabelSegundoLP.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabelSegundoLP.setText(" ");
+        jPanel1.add(jLabelSegundoLP, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 310, -1));
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/primerlugar.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 120, 90));
+
+        jLabelPrimerL.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabelPrimerL.setText(" ");
+        jPanel1.add(jLabelPrimerL, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 310, -1));
+
+        jLabelPrimerLP.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabelPrimerLP.setText(" ");
+        jPanel1.add(jLabelPrimerLP, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 360, -1));
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/tercerlugar.png"))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 190, 120, 80));
+
+        jLabelTercerL.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabelTercerL.setText(" ");
+        jPanel1.add(jLabelTercerL, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 260, 280, -1));
+
+        jLabelTercerL1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabelTercerL1.setText(" ");
+        jPanel1.add(jLabelTercerL1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 320, 370, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 930, 420));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo1.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, 1100, 640));
@@ -149,5 +156,6 @@ public class Interfaz_Resultados extends javax.swing.JFrame {
     public javax.swing.JLabel jLabelSegundoLP;
     public javax.swing.JLabel jLabelTercerL;
     public javax.swing.JLabel jLabelTercerL1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

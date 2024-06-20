@@ -64,8 +64,8 @@ public class Interfaz_Menu extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablePuntajes = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
         jButtonJugar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         Saliricono = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -94,7 +94,11 @@ public class Interfaz_Menu extends javax.swing.JFrame {
         jTablePuntajes.setShowVerticalLines(false);
         jScrollPane1.setViewportView(jTablePuntajes);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 330, 410, 70));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 490, 410, 70));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logotipo.png"))); // NOI18N
+        jLabel7.setText("jLabel7");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 710, 190));
 
         jButtonJugar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconjugar.png"))); // NOI18N
         jButtonJugar.setBorder(null);
@@ -106,10 +110,7 @@ public class Interfaz_Menu extends javax.swing.JFrame {
                 jButtonJugarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 140, 130, 100));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ahorcado.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+        getContentPane().add(jButtonJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 130, 100));
 
         Saliricono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/saliricon.png"))); // NOI18N
         Saliricono.setBorderPainted(false);
@@ -120,19 +121,22 @@ public class Interfaz_Menu extends javax.swing.JFrame {
                 SaliriconoActionPerformed(evt);
             }
         });
-        getContentPane().add(Saliricono, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 450, 110, 80));
+        getContentPane().add(Saliricono, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 420, 110, 80));
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 3, 48)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Salir");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 450, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 510, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 3, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Puntajes");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 260, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 420, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Comic Sans MS", 3, 36)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Jugar");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 160, 130, 60));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 510, 130, 60));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo1.png"))); // NOI18N
         jLabel1.setOpaque(true);
@@ -194,11 +198,11 @@ public class Interfaz_Menu extends javax.swing.JFrame {
     private javax.swing.JButton Saliricono;
     public javax.swing.JButton jButtonJugar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTablePuntajes;
     // End of variables declaration//GEN-END:variables
