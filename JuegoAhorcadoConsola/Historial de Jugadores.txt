@@ -1,2 +1,4 @@
 Israel,305
+Tami,300
 Carlos,220
+Jonas,155

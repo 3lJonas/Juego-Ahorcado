@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package juegoAhorcado;
+package modelo;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import javax.swing.table.DefaultTableModel;
 import vista.Interfaz_Menu;
+import vista.Interfaz_Puntajes;
 
 /**
  *
@@ -90,7 +91,8 @@ public class Resultados {
         });
     }
     
-      public void actualizarJTable(String archivoHistorial, Interfaz_Menu intMenu) {
+      public void actualizarJTable( Interfaz_Puntajes intPuntajes) {
+          String archivoHistorial="Historial de Jugadores.txt";
         ArrayList<Jugador> historialJugadores = leerHistorial(archivoHistorial);
         ordenarDecreciente(historialJugadores);
 
@@ -105,6 +107,6 @@ public class Resultados {
         }
 
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
-        intMenu.jTablePuntajes.setModel(model);
+        intPuntajes.jTablePuntajes.setModel(model);
     }
 }

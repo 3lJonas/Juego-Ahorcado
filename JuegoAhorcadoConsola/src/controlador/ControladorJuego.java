@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import juegoAhorcado.Jugador;
+import modelo.Jugador;
 import modelo.Torneo;
 import vista.Interfaz_Juego;
 import vista.Interfaz_Menu;
@@ -57,9 +57,6 @@ public class ControladorJuego implements ActionListener, MouseListener {
         }
     }
 
-    public void iniciarJuego() {
-        this.torneo.iniciarTorneo();
-    }
 
     public Interfaz_Juego getInterfaz() {
         return this.interfaz;

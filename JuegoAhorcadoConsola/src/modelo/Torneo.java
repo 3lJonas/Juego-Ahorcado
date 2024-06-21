@@ -23,9 +23,6 @@ import javax.swing.Icon;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.UIManager;
-import juegoAhorcado.Jugador;
-import juegoAhorcado.Palabra;
-import juegoAhorcado.Resultados;
 import vista.Interfaz_Juego;
 import vista.Interfaz_Menu;
 import vista.Interfaz_Multijugador;
@@ -88,10 +85,9 @@ public class Torneo {
 
             // Verificar si el usuario cancela o cierra el cuadro de diálogo
             if (nuevaPalabra == null) {
-                int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea cancelar la entrada de nuevas palabras? Esto finalizará el torneo.", "Confirmar Cancelación", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, icono);
+                int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea cancelar la entrada de nuevas palabras? ", "Confirmar Cancelación", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, icono);
                 if (respuesta == JOptionPane.YES_OPTION) {
-                    // Finalizar el torneo si se confirma la cancelación
-
+                    return;
                 } else {
                     continue; // Continuar solicitando una nueva palabra si el usuario elige no cancelar
                 }
@@ -106,7 +102,8 @@ public class Torneo {
 
         // Una vez que hay suficientes palabras, continuar
         if (palabras.size() == (totRondas * this.jugadores.size())) {
-            prepararPalabrasJugadores();
+           this.prepararPalabrasJugadores();
+            this.actualizarInterfaz();
             this.intMultijugador.setVisible(false);
             this.intJuego.setVisible(true);
         }
@@ -128,9 +125,6 @@ public class Torneo {
         }
     }
 
-    public void iniciarTorneo() {
-        this.actualizarInterfaz();
-    }
 
     private void siguiente() {
         // Si no hay jugadores, no hacer nada
@@ -200,11 +194,11 @@ public class Torneo {
                             jugador.setAdivino(true);
                             jugador.sumarPuntaje(50); // Bonificación por completar la palabra
                             jugador.sumarPuntaje(jugador.getIntentos() * 10); // Puntos por intentos restantes
-                            actualizarInterfaz();
+                          
                             
                             this.intJuego.jLabelJugadorMensaje.setText("¡Ha adivinado la palabra!!!");
                             reproducirMusica("recursos/victoria.mp3", this::siguiente);
-                           
+                            
                         }
                     }
                 } else {
@@ -214,7 +208,8 @@ public class Torneo {
 
             if (jugador.getIntentos() == 0) {
                 this.intJuego.jLabelJugadorMensaje.setText("Perdiste tus oportunidades");
-                reproducirMusica("recursos/muerte.mp3", this::siguiente);
+                reproducirMusica("recursos/muerte.mp3", this::siguiente); 
+                actualizarInterfaz();
             }
 
             this.intJuego.letraJugador1.setText("");
@@ -230,7 +225,9 @@ public class Torneo {
 
             if (todosTerminaron) {
                 this.ronda++;
+                 
                 if (this.ronda <= this.totRondas) {
+                    this.intJuego.jLabelJugadorMensaje.setText("¡Va a empezar la ronda N°"+this.ronda+"!!");
                     // Reiniciar los estados de los jugadores para la siguiente ronda, si es necesario
                     for (Jugador j : jugadores) {
                         j.resetearVidas();
@@ -238,9 +235,10 @@ public class Torneo {
                     }
                     this.prepararPalabrasJugadores();
                     this.jugadorActual = 0; // Reiniciar al primer jugador
+                     reproducirMusica("recursos/finalizacion de ronda.mp3", this::siguiente); 
                     this.actualizarInterfaz();
                 } else {
-                    // Fin del torneo, mostrar resultados
+                     reproducirMusica("recursos/finalizacion de ronda.mp3", this::siguiente); 
                     cargarResultados();
                 }
             }
@@ -258,9 +256,21 @@ public class Torneo {
                 callback.run();
             }
         });
-        this.intMenu.getMediaPlayer().pause();
+
+        // Pause the current media player
+        MediaPlayer mainMediaPlayer = this.intMenu.getMediaPlayer();
+        if (mainMediaPlayer != null) {
+            mainMediaPlayer.pause();
+        }
+
         mediaPlayerAcciones.play();
-        this.intMenu.getMediaPlayer().play();
+
+        // Resume the main media player after the action
+        mediaPlayerAcciones.setOnStopped(() -> {
+            if (mainMediaPlayer != null) {
+                mainMediaPlayer.play();
+            }
+        });
     }
 
     private void cargarResultados() {

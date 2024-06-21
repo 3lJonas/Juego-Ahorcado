@@ -12,31 +12,36 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
-import juegoAhorcado.Jugador;
+import modelo.Jugador;
 import vista.Interfaz_Juego;
 import vista.Interfaz_Menu;
 import vista.Interfaz_Multijugador;
+import vista.Interfaz_Puntajes;
 
 /**
  *
  * @author ASUS GAMER
  */
 public class ControladorMenu implements ActionListener, MouseListener {
-
+    
     private ArrayList<Jugador> jugadores = new ArrayList<>();
     private int jugador = 1;
     private boolean verificar;
     private Interfaz_Menu intMenu;
+    private Interfaz_Puntajes intPuntajes;
     private Interfaz_Multijugador pesMultiJugador;
     private Interfaz_Juego intJuego;
     private ControladorJuego contrJuego;
-
+    
     public ControladorMenu() {
         this.intMenu = new Interfaz_Menu();
+        this.intPuntajes = new Interfaz_Puntajes();
         this.pesMultiJugador = new Interfaz_Multijugador();
         this.intJuego = new Interfaz_Juego();
-
+        
         this.intMenu.jButtonJugar.addActionListener(this);
+        this.intMenu.jButtonPuntajes.addActionListener(this);
+        this.intPuntajes.jLabelRegresar.addMouseListener(this);
         this.pesMultiJugador.jLabelRegresar.addMouseListener(this);
         this.pesMultiJugador.jButtonAñadir.addActionListener(this);
         this.pesMultiJugador.jButtonQuitar.addActionListener(this);
@@ -46,16 +51,23 @@ public class ControladorMenu implements ActionListener, MouseListener {
         this.pesMultiJugador.jButtonListo3.addActionListener(this);
         this.pesMultiJugador.jButtonListo4.addActionListener(this);
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (this.jugador != 0) {
+        if (this.jugador !=0) {
+            
             this.pesMultiJugador.jButtonQuitar.setEnabled(true);
             if (this.jugador == 3) {
                 this.pesMultiJugador.jButtonAñadir.setEnabled(false);
             }
         }
-        // Para el menu de jugar o ver puntaje
+        //Para el menu de ver puntaje
+        if (this.intMenu.jButtonPuntajes == e.getSource()) {
+            this.intMenu.setVisible(false);
+            this.intPuntajes.setLocationRelativeTo(null);
+            this.intPuntajes.setVisible(true);
+        }
+        // Para el menu de jugar 
         if (this.intMenu.jButtonJugar == e.getSource()) {
             SpinnerNumberModel model = new SpinnerNumberModel(1, 1, 7, 1);
             this.intMenu.setVisible(false);
@@ -71,11 +83,10 @@ public class ControladorMenu implements ActionListener, MouseListener {
                     this.contrJuego.dispose();
                 }
                 // Crear una nueva instancia de ControladorJuego
-                this.contrJuego = new ControladorJuego(intJuego, pesMultiJugador, this.jugadores,this.intMenu);
-               // this.pesMultiJugador.setVisible(false);
+                this.contrJuego = new ControladorJuego(intJuego, pesMultiJugador, this.jugadores, this.intMenu);
+                
                 this.contrJuego.getInterfaz().setLocationRelativeTo(null);
-                this.contrJuego.iniciarJuego();
-                //this.contrJuego.getInterfaz().setVisible(true);
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Todos los jugadores deben tener nombres válidos y estar listos!!!");
                 this.jugadores.clear();
@@ -143,7 +154,8 @@ public class ControladorMenu implements ActionListener, MouseListener {
         }
     }
 
-    public void cambiarListo(JButton boton) {
+
+public void cambiarListo(JButton boton) {
         if (boton.getText().equals("No listo")) {
             boton.setText("Listo");
         } else {
@@ -174,12 +186,16 @@ public class ControladorMenu implements ActionListener, MouseListener {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+public void mouseClicked(MouseEvent e) {
         if (this.pesMultiJugador.jLabelRegresar == e.getSource()) {
             this.pesMultiJugador.setVisible(false);
             this.intMenu.setVisible(true);
-            this.intMenu.agregarPuntuaciones();
             this.resetMultiJugador();
+        }
+         if (this.intPuntajes.jLabelRegresar == e.getSource()) {
+            this.intPuntajes.dispose();
+            this.intMenu.setVisible(true);
+            
         }
     }
 
@@ -208,18 +224,18 @@ public class ControladorMenu implements ActionListener, MouseListener {
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
+public void mousePressed(MouseEvent e) {
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+public void mouseReleased(MouseEvent e) {
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
+public void mouseEntered(MouseEvent e) {
     }
 
     @Override
-    public void mouseExited(MouseEvent e) {
+public void mouseExited(MouseEvent e) {
     }
 }
