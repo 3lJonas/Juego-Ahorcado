@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Random;
 import java.util.Set;
 import javafx.embed.swing.JFXPanel;
@@ -49,6 +51,8 @@ public class Torneo {
     private Map<Jugador, StringBuilder> palabrasOcultas;
     private Map<Jugador, Set<Character>> letrasUsadasJugador;
     private Timer delayTimer;
+    private boolean isPlayingMusic = false;  // Para rastrear si se está reproduciendo música
+    private Queue<Runnable> musicQueue = new LinkedList<>();  // Cola de acciones a ejecutar después de la música
 
     public Torneo(ArrayList<Jugador> jugadores, int totRondas, Interfaz_Juego intJuego, Interfaz_Multijugador intMultijugador, Interfaz_Resultados intResultados, Interfaz_Menu intMenu) {
         this.intMenu = intMenu;
@@ -102,10 +106,10 @@ public class Torneo {
 
         // Una vez que hay suficientes palabras, continuar
         if (palabras.size() == (totRondas * this.jugadores.size())) {
-           this.prepararPalabrasJugadores();
+            this.prepararPalabrasJugadores();
             this.actualizarInterfaz();
             this.intMultijugador.setVisible(false);
-            this.intJuego.setVisible(true);
+            this.intJuego.setVisible(true);this.actualizarInterfaz();
         }
 
     }
@@ -124,7 +128,6 @@ public class Torneo {
             letrasUsadasJugador.put(jugador, new HashSet<>());
         }
     }
-
 
     private void siguiente() {
         // Si no hay jugadores, no hacer nada
@@ -195,10 +198,8 @@ public class Torneo {
                             jugador.sumarPuntaje(50); // Bonificación por completar la palabra
                             jugador.sumarPuntaje(jugador.getIntentos() * 10); // Puntos por intentos restantes
                           
-                            
                             this.intJuego.jLabelJugadorMensaje.setText("¡Ha adivinado la palabra!!!");
-                            reproducirMusica("recursos/victoria.mp3", this::siguiente);
-                            
+                            reproducirMusica("recursos/victoria.mp3", this::cargarResultados);
                         }
                     }
                 } else {
@@ -235,42 +236,63 @@ public class Torneo {
                     }
                     this.prepararPalabrasJugadores();
                     this.jugadorActual = 0; // Reiniciar al primer jugador
-                     reproducirMusica("recursos/finalizacion de ronda.mp3", this::siguiente); 
+                    reproducirMusica("recursos/finalizacion de ronda.mp3", this::cargarResultados); 
                     this.actualizarInterfaz();
                 } else {
-                     reproducirMusica("recursos/finalizacion de ronda.mp3", this::siguiente); 
+                    reproducirMusica("recursos/finalizacion de ronda.mp3", this::cargarResultados); 
                     cargarResultados();
+                    this.jugadores.clear();
                 }
             }
         }
     }
 
+    // Método para reproducir música con cola
     private void reproducirMusica(String ruta, Runnable callback) {
-        File audioJuego = new File(ruta);
-        Media media = new Media(audioJuego.toURI().toString());
-        mediaPlayerAcciones = new MediaPlayer(media);
+        musicQueue.add(() -> {
+            isPlayingMusic = true;
+            File audioJuego = new File(ruta);
+            Media media = new Media(audioJuego.toURI().toString());
+            mediaPlayerAcciones = new MediaPlayer(media);
 
-        mediaPlayerAcciones.setOnEndOfMedia(() -> {
-            mediaPlayerAcciones.stop();
-            if (callback != null) {
-                callback.run();
-            }
-        });
+            mediaPlayerAcciones.setOnEndOfMedia(() -> {
+                mediaPlayerAcciones.stop();
+                isPlayingMusic = false;
+                if (callback != null) {
+                    callback.run();
+                }
+                playNextInQueue();  // Reproduce la siguiente acción en la cola
+            });
 
-        // Pause the current media player
-        MediaPlayer mainMediaPlayer = this.intMenu.getMediaPlayer();
-        if (mainMediaPlayer != null) {
-            mainMediaPlayer.pause();
-        }
-
-        mediaPlayerAcciones.play();
-
-        // Resume the main media player after the action
-        mediaPlayerAcciones.setOnStopped(() -> {
+            MediaPlayer mainMediaPlayer = this.intMenu.getMediaPlayer();
             if (mainMediaPlayer != null) {
-                mainMediaPlayer.play();
+                mainMediaPlayer.pause();
             }
+
+            mediaPlayerAcciones.play();
+
+            mediaPlayerAcciones.setOnStopped(() -> {
+                isPlayingMusic = false;
+                if (mainMediaPlayer != null) {
+                    mainMediaPlayer.play();
+                }
+                playNextInQueue();  // Reproduce la siguiente acción en la cola
+            });
         });
+
+        if (!isPlayingMusic) {
+            playNextInQueue();
+        }
+    }
+
+    // Método para reproducir la siguiente acción en la cola
+    private void playNextInQueue() {
+        if (!isPlayingMusic && !musicQueue.isEmpty()) {
+            Runnable nextAction = musicQueue.poll();
+            if (nextAction != null) {
+                nextAction.run();
+            }
+        }
     }
 
     private void cargarResultados() {

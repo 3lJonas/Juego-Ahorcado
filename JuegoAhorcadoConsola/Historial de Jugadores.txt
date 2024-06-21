@@ -1,4 +1,10 @@
 Israel,305
 Tami,300
+a,290
+b,255
 Carlos,220
+b,180
 Jonas,155
+a,155
+a,120
+b,0
