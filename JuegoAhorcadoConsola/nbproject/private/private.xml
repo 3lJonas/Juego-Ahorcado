@@ -5,14 +5,14 @@
         <group>
             <file>file:/C:/Users/ASUS%20GAMER/Documents/Proyectos%20%20Netbeans%20nuevos/Juego-ahorcado/JuegoAhorcadoConsola/src/controlador/ControladorMenu.java</file>
             <file>file:/C:/Users/ASUS%20GAMER/Documents/Proyectos%20%20Netbeans%20nuevos/Juego-ahorcado/JuegoAhorcadoConsola/src/modelo/Torneo.java</file>
-            <file>file:/C:/Users/ASUS%20GAMER/Documents/Proyectos%20%20Netbeans%20nuevos/Juego-ahorcado/JuegoAhorcadoConsola/src/juegoAhorcado/JuegoAhorcadoConsola.java</file>
             <file>file:/C:/Users/ASUS%20GAMER/Documents/Proyectos%20%20Netbeans%20nuevos/Juego-ahorcado/JuegoAhorcadoConsola/src/vista/Interfaz_Resultados.java</file>
-            <file>file:/C:/Users/ASUS%20GAMER/Documents/Proyectos%20%20Netbeans%20nuevos/Juego-ahorcado/JuegoAhorcadoConsola/src/juegoAhorcado/Resultados.java</file>
-            <file>file:/C:/Users/ASUS%20GAMER/Documents/Proyectos%20%20Netbeans%20nuevos/Juego-ahorcado/JuegoAhorcadoConsola/src/juegoAhorcado/Jugador.java</file>
+            <file>file:/C:/Users/ASUS%20GAMER/Documents/Proyectos%20%20Netbeans%20nuevos/Juego-ahorcado/JuegoAhorcadoConsola/src/modelo/Jugador.java</file>
+            <file>file:/C:/Users/ASUS%20GAMER/Documents/Proyectos%20%20Netbeans%20nuevos/Juego-ahorcado/JuegoAhorcadoConsola/src/modelo/Palabra.java</file>
             <file>file:/C:/Users/ASUS%20GAMER/Documents/Proyectos%20%20Netbeans%20nuevos/Juego-ahorcado/JuegoAhorcadoConsola/src/vista/Interfaz_Juego.java</file>
             <file>file:/C:/Users/ASUS%20GAMER/Documents/Proyectos%20%20Netbeans%20nuevos/Juego-ahorcado/JuegoAhorcadoConsola/src/controlador/ControladorJuego.java</file>
             <file>file:/C:/Users/ASUS%20GAMER/Documents/Proyectos%20%20Netbeans%20nuevos/Juego-ahorcado/JuegoAhorcadoConsola/src/vista/Interfaz_Menu.java</file>
-            <file>file:/C:/Users/ASUS%20GAMER/Documents/Proyectos%20%20Netbeans%20nuevos/Juego-ahorcado/JuegoAhorcadoConsola/src/juegoAhorcado/Palabra.java</file>
+            <file>file:/C:/Users/ASUS%20GAMER/Documents/Proyectos%20%20Netbeans%20nuevos/Juego-ahorcado/JuegoAhorcadoConsola/src/modelo/Main.java</file>
+            <file>file:/C:/Users/ASUS%20GAMER/Documents/Proyectos%20%20Netbeans%20nuevos/Juego-ahorcado/JuegoAhorcadoConsola/src/modelo/Resultados.java</file>
             <file>file:/C:/Users/ASUS%20GAMER/Documents/Proyectos%20%20Netbeans%20nuevos/Juego-ahorcado/JuegoAhorcadoConsola/src/vista/Interfaz_Multijugador.java</file>
         </group>
     </open-files>

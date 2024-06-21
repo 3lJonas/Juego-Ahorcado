@@ -44,7 +44,8 @@ public class ControladorJuego implements ActionListener, MouseListener {
 
         this.torneo = new Torneo(this.jugadores, Integer.parseInt(interfazAnterior.jSpinnerRondas.getValue().toString()), interfaz, interfazAnterior,this.intResultados,this.intMenu);
    this.interfaz.adivinarJugador1.setEnabled(true);
-    this.interfaz.palabraJugador1.setEnabled(true);
+    this.interfaz.letraJugador1.setEnabled(true);
+    this.interfaz.jLabelJugadorMensaje.setText("");
     }
 
     @Override

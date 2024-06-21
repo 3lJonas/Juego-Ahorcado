@@ -109,7 +109,8 @@ public class Torneo {
             this.prepararPalabrasJugadores();
             this.actualizarInterfaz();
             this.intMultijugador.setVisible(false);
-            this.intJuego.setVisible(true);this.actualizarInterfaz();
+            this.intJuego.setVisible(true);
+            this.actualizarInterfaz();
         }
 
     }
@@ -197,9 +198,9 @@ public class Torneo {
                             jugador.setAdivino(true);
                             jugador.sumarPuntaje(50); // Bonificación por completar la palabra
                             jugador.sumarPuntaje(jugador.getIntentos() * 10); // Puntos por intentos restantes
-                          
+
                             this.intJuego.jLabelJugadorMensaje.setText("¡Ha adivinado la palabra!!!");
-                            reproducirMusica("recursos/victoria.mp3", this::cargarResultados);
+                            reproducirMusica("recursos/victoria.mp3", this::siguiente);
                         }
                     }
                 } else {
@@ -209,8 +210,9 @@ public class Torneo {
 
             if (jugador.getIntentos() == 0) {
                 this.intJuego.jLabelJugadorMensaje.setText("Perdiste tus oportunidades");
-                reproducirMusica("recursos/muerte.mp3", this::siguiente); 
-                actualizarInterfaz();
+                reproducirMusica("recursos/muerte.mp3", this::siguiente);
+                
+                this.actualizarInterfaz();
             }
 
             this.intJuego.letraJugador1.setText("");
@@ -226,9 +228,10 @@ public class Torneo {
 
             if (todosTerminaron) {
                 this.ronda++;
-                 
+
                 if (this.ronda <= this.totRondas) {
-                    this.intJuego.jLabelJugadorMensaje.setText("¡Va a empezar la ronda N°"+this.ronda+"!!");
+                    this.intJuego.jLabelJugadorMensaje.setText("¡Va a empezar la ronda N°" + this.ronda + "!!");
+                    delayTimer.restart();
                     // Reiniciar los estados de los jugadores para la siguiente ronda, si es necesario
                     for (Jugador j : jugadores) {
                         j.resetearVidas();
@@ -236,18 +239,18 @@ public class Torneo {
                     }
                     this.prepararPalabrasJugadores();
                     this.jugadorActual = 0; // Reiniciar al primer jugador
-                    reproducirMusica("recursos/finalizacion de ronda.mp3", this::cargarResultados); 
+
                     this.actualizarInterfaz();
+                    this.siguiente();
                 } else {
-                    reproducirMusica("recursos/finalizacion de ronda.mp3", this::cargarResultados); 
+
                     cargarResultados();
-                    this.jugadores.clear();
                 }
             }
         }
     }
 
-    // Método para reproducir música con cola
+// Método para reproducir música con cola
     private void reproducirMusica(String ruta, Runnable callback) {
         musicQueue.add(() -> {
             isPlayingMusic = true;
@@ -285,7 +288,7 @@ public class Torneo {
         }
     }
 
-    // Método para reproducir la siguiente acción en la cola
+// Método para reproducir la siguiente acción en la cola
     private void playNextInQueue() {
         if (!isPlayingMusic && !musicQueue.isEmpty()) {
             Runnable nextAction = musicQueue.poll();

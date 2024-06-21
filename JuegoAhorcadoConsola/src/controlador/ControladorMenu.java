@@ -77,6 +77,7 @@ public class ControladorMenu implements ActionListener, MouseListener {
         }
         // Para iniciar la partida
         if (this.pesMultiJugador.jButtonIniciar == e.getSource()) {
+                 this.jugadores.clear();
             if (this.verificarListo()) {
                 // Eliminar la instancia anterior de ControladorJuego si existe
                 if (this.contrJuego != null) {
